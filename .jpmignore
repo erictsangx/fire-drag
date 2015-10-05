@@ -13,3 +13,8 @@
 #git
 .gitignore
 .git
+
+.jpmignore
+
+data/icon-32.png
+data/icon-64.png
