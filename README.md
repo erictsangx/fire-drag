@@ -18,3 +18,6 @@ link: <a href="https://addons.mozilla.org/en-US/firefox/addon/fire-drag">https:/
 <li>v0.0.3: add preferences for frontground/background</li>
 <li>v0.0.4: add preferences for distance-threshold, simple text-url recognition</li>
 </ul>
+
+<p>source code: <a href="https://github.com/EricTsangX/fire-drag">https://github.com/EricTsangX/fire-drag</a></p>
+<p>link: <a href="https://addons.mozilla.org/en-US/firefox/addon/fire-drag">https://addons.mozilla.org/en-US/firefox/addon/fire-drag</a></p>
