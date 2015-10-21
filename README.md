@@ -7,5 +7,12 @@ This simple add-on allows users to drag:
 <li>link/img to open in background tabs</li>
 </ul>
 
+PS: NO RESTART but need to refresh webpages.
 
+source code: <a href="https://github.com/erictsangx/fire-drag">https://github.com/erictsangx/fire-drag</a>
 link: <a href="https://addons.mozilla.org/en-US/firefox/addon/fire-drag">https://addons.mozilla.org/en-US/firefox/addon/fire-drag</a>
+
+<ul>
+<li>v0.0.1: first release</li>
+<li>v0.0.2: use default search engine instead of google</li>
+</ul>

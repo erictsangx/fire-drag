@@ -1,11 +1,14 @@
 /**
  * Created by erictsangx on 5/10/2015.
  */
-var self = require("sdk/self");
-var data = self.data;
-var pageMods = require("sdk/page-mod");
-var tabs = require("sdk/tabs");
-var queryString = require("sdk/querystring");
+
+const self = require("sdk/self");
+const data = self.data;
+const pageMods = require("sdk/page-mod");
+const tabs = require("sdk/tabs");
+
+const {Cu} = require("chrome");
+Cu.import('resource://gre/modules/Services.jsm');
 
 pageMods.PageMod({
     include: ['*'],
@@ -13,11 +16,10 @@ pageMods.PageMod({
     onAttach: startListening
 });
 
-
 function startListening(worker) {
     worker.port.on('triggerDrop', function (msg) {
         if (msg.search) {
-            let searchLink = `https://www.google.com/search?${queryString.stringify({q: msg.content})}`;
+            let searchLink = Services.search.getEngineByName(Services.search.getDefaultEngineInfo().name).getSubmission(msg.content).uri.spec;
             tabs.open({
                 url: searchLink,
                 inBackground: false
