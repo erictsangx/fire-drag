@@ -1,13 +1,47 @@
 {
   "title": "Fire Drag",
   "name": "firedrag",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "drag texts and links with/without e10s",
   "main": "index.js",
   "author": "erictsangx@gmail.com",
   "engines": {
-    "firefox": ">=38.0a1",
-    "fennec": ">=38.0a1"
+    "firefox": ">=40.0a1",
+    "fennec": ">=40.0a1"
   },
+  "preferences": [
+    {
+      "name": "searchIn",
+      "type": "radio",
+      "title": "Search Text in",
+      "value": false,
+      "options": [
+        {
+          "value": false,
+          "label": "Frontground"
+        },
+        {
+          "value": true,
+          "label": "Background"
+        }
+      ]
+    },
+    {
+      "name": "openIn",
+      "type": "radio",
+      "title": "Open Link in",
+      "value": true,
+      "options": [
+        {
+          "value": false,
+          "label": "Frontground"
+        },
+        {
+          "value": true,
+          "label": "Background"
+        }
+      ]
+    }
+  ],
   "license": "MIT"
 }

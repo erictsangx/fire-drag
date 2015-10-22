@@ -15,4 +15,5 @@ link: <a href="https://addons.mozilla.org/en-US/firefox/addon/fire-drag">https:/
 <ul>
 <li>v0.0.1: first release</li>
 <li>v0.0.2: use default search engine instead of google</li>
+<li>v0.0.3: add preferences for frontground/background</li>
 </ul>

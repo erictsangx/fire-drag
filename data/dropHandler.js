@@ -22,6 +22,7 @@
             search: !link,
             distance: distance
         };
+
         self.port.emit("triggerDrop", emitObj);
     };
 
