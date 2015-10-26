@@ -8,6 +8,24 @@
 
     const start = {};
 
+    function parseLink(text) {
+        if (text.startsWith("http")) {
+            return {
+                link: text,
+                isLink: true
+            };
+        }
+        if (text.startsWith("www.")) {
+            return {
+                link: `http://${text}`,
+                isLink: true
+            };
+        }
+        return {
+            isLink: false
+        };
+    }
+
     this.addEventListener("dragstart", event=> {
         start.x = event.clientX;
         start.y = event.clientY;
@@ -17,12 +35,27 @@
         event.preventDefault();
         const distance = Math.hypot(event.clientX - start.x, event.clientY - start.y);
         const link = event.dataTransfer.getData("URL");
+        const text = event.dataTransfer.getData("text");
         const emitObj = {
-            content: link ? link : event.dataTransfer.getData("text"),
-            search: !link,
+            content: "",
+            search: true,
             distance: distance
         };
-
+        if (link) {
+            emitObj.content = link;
+            emitObj.search = false;
+        }
+        else {
+            const parsed = parseLink(text);
+            if (parsed.isLink) {
+                emitObj.content = parsed.link;
+                emitObj.search = false;
+            }
+            else {
+                emitObj.content = text;
+                emitObj.search = true;
+            }
+        }
         self.port.emit("triggerDrop", emitObj);
     };
 
