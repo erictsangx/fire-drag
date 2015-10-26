@@ -3,8 +3,8 @@ e10s(multi-process: <a href="https://wiki.mozilla.org/Electrolysis">https://wiki
 
 This simple add-on allows users to drag:
 <ul>
-<li>text to search in frontground tabs</li>
-<li>link/img to open in background tabs</li>
+<li>text to search in frontground/background tabs</li>
+<li>link/img to open in frontground/background tabs</li>
 </ul>
 
 PS: NO RESTART but need to refresh webpages.
