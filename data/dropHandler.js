@@ -5,7 +5,6 @@
 
 (function () {
     "use strict";
-
     const start = {};
 
     function parseLink(text) {
@@ -32,31 +31,33 @@
     }, false);
 
     this.ondrop = (event)=> {
-        event.preventDefault();
-        const distance = Math.hypot(event.clientX - start.x, event.clientY - start.y);
-        const link = event.dataTransfer.getData("URL");
-        const text = event.dataTransfer.getData("text");
-        const emitObj = {
-            content: "",
-            search: true,
-            distance: distance
-        };
-        if (link) {
-            emitObj.content = link;
-            emitObj.search = false;
-        }
-        else {
-            const parsed = parseLink(text);
-            if (parsed.isLink) {
-                emitObj.content = parsed.link;
+        if (event.target.nodeName != 'INPUT') {
+            event.preventDefault();
+            const distance = Math.hypot(event.clientX - start.x, event.clientY - start.y);
+            const link = event.dataTransfer.getData("URL");
+            const text = event.dataTransfer.getData("text");
+            const emitObj = {
+                content: "",
+                search: true,
+                distance: distance
+            };
+            if (link) {
+                emitObj.content = link;
                 emitObj.search = false;
             }
             else {
-                emitObj.content = text;
-                emitObj.search = true;
+                const parsed = parseLink(text);
+                if (parsed.isLink) {
+                    emitObj.content = parsed.link;
+                    emitObj.search = false;
+                }
+                else {
+                    emitObj.content = text;
+                    emitObj.search = true;
+                }
             }
+            self.port.emit("triggerDrop", emitObj);
         }
-        self.port.emit("triggerDrop", emitObj);
     };
 
     this.ondragover = (event)=> {
