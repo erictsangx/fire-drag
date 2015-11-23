@@ -1,7 +1,7 @@
 {
   "title": "Fire Drag",
   "name": "firedrag",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "drag texts and links with/without e10s",
   "main": "index.js",
   "author": "erictsangx@gmail.com",
@@ -48,6 +48,19 @@
       "value": 50,
       "title": "Threshold",
       "description": "threshold for dragging distance"
+    },
+    {
+      "type": "control",
+      "name": "setEngine",
+      "label": "Click",
+      "title": "Select Search Engine"
+    },
+    {
+      "name": "selectedSearchEngine",
+      "type": "string",
+      "title": "selectedSearchEngine",
+      "value": "",
+      "hidden": true
     }
   ],
   "license": "MIT"

@@ -18,6 +18,7 @@ link: <a href="https://addons.mozilla.org/en-US/firefox/addon/fire-drag">https:/
 <li>v0.0.3: add preferences for frontground/background</li>
 <li>v0.0.4: add preferences for distance-threshold, simple text-url recognition</li>
 <li>v0.0.5: fix drop on input field problem</li>
+<li>v0.0.6: add a preference to select the search engine</li>
 </ul>
 
 <p>source code: <a href="https://github.com/EricTsangX/fire-drag">https://github.com/EricTsangX/fire-drag</a></p>
