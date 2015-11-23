@@ -4,17 +4,17 @@
 
 
 (function () {
-    "use strict";
+    'use strict';
     const start = {};
 
     function parseLink(text) {
-        if (text.startsWith("http")) {
+        if (text.startsWith('http')) {
             return {
                 link: text,
                 isLink: true
             };
         }
-        if (text.startsWith("www.")) {
+        if (text.startsWith('www.')) {
             return {
                 link: `http://${text}`,
                 isLink: true
@@ -25,7 +25,7 @@
         };
     }
 
-    this.addEventListener("dragstart", event=> {
+    this.addEventListener('dragstart', event=> {
         start.x = event.clientX;
         start.y = event.clientY;
     }, false);
@@ -34,10 +34,10 @@
         if (event.target.nodeName != 'INPUT') {
             event.preventDefault();
             const distance = Math.hypot(event.clientX - start.x, event.clientY - start.y);
-            const link = event.dataTransfer.getData("URL");
-            const text = event.dataTransfer.getData("text");
+            const link = event.dataTransfer.getData('URL');
+            const text = event.dataTransfer.getData('text');
             const emitObj = {
-                content: "",
+                content: '',
                 search: true,
                 distance: distance
             };
@@ -56,7 +56,7 @@
                     emitObj.search = true;
                 }
             }
-            self.port.emit("triggerDrop", emitObj);
+            self.port.emit('triggerDrop', emitObj);
         }
     };
 
