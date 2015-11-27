@@ -1,7 +1,7 @@
 {
   "title": "Fire Drag",
   "name": "firedrag",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "drag texts and links with/without e10s",
   "main": "index.js",
   "author": "erictsangx@gmail.com",

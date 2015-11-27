@@ -5,11 +5,14 @@
 (()=> {
     const elementRef = document.getElementById('setEngine');
     self.port.on('searchEngineList', (msg)=> {
-        elementRef.innerHTML = msg.engines.map((element)=> {
+        msg.engines.forEach((element)=> {
+            const optionRef = document.createElement('option');
+            optionRef.setAttribute('value', element);
+            optionRef.textContent = element;
             if (msg.selected === element) {
-                return `<option value="${element}" selected>${element}</option>`;
+                optionRef.setAttribute('selected', 'selected');
             }
-            return `<option value="${element}">${element}</option>`;
+            elementRef.appendChild(optionRef);
         });
     });
     elementRef.addEventListener('change', function (event) {
