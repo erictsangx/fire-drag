@@ -6,6 +6,8 @@
 (function () {
     'use strict';
     const start = {};
+    let distance = 0;
+    let dropOnInput = false;
 
     function parseLink(text) {
         if (text.startsWith('http')) {
@@ -25,17 +27,18 @@
         };
     }
 
-    this.addEventListener('dragstart', event=> {
+    this.addEventListener('dragstart', event => {
         start.x = event.clientX;
         start.y = event.clientY;
     }, false);
 
-    this.ondrop = (event)=> {
-        if (event.target.nodeName != 'INPUT') {
+
+    this.addEventListener('dragend', event => {
+        if (!dropOnInput) {
             event.preventDefault();
-            const distance = Math.hypot(event.clientX - start.x, event.clientY - start.y);
             const link = event.dataTransfer.getData('URL');
             const text = event.dataTransfer.getData('text');
+
             const emitObj = {
                 content: '',
                 search: true,
@@ -58,10 +61,24 @@
             }
             self.port.emit('triggerDrop', emitObj);
         }
+    });
+
+    this.ondrop = (event) => {
+        if (!dropOnInput) {
+            event.preventDefault();
+        }
     };
 
     this.ondragover = (event)=> {
         event.preventDefault();
+        if (event.target.nodeName == 'INPUT') {
+            dropOnInput = true;
+        }
+        else {
+            distance = Math.hypot(event.clientX - start.x, event.clientY - start.y);
+            dropOnInput = false;
+        }
     };
+
 
 }).call(document);
