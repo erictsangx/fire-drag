@@ -1,13 +1,12 @@
 {
   "title": "Fire Drag",
   "name": "firedrag",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "drag texts and links with/without e10s",
   "main": "index.js",
   "author": "erictsangx@gmail.com",
   "engines": {
-    "firefox": ">=40.0a1",
-    "fennec": ">=40.0a1"
+    "firefox": ">=40.0a1"
   },
   "preferences": [
     {

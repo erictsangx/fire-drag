@@ -14,6 +14,7 @@ require('./modules/preference');
 pageMods.PageMod({
     include: ['*'],
     contentScriptFile: data.url('dropHandler.js'),
+    contentScriptWhen: 'start',
     onAttach: startListening
 });
 
