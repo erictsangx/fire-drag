@@ -2,6 +2,8 @@
  * Created by erictsangx on 23/11/2015.
  */
 
+'use strict';
+
 const self = require('sdk/self');
 const Panel = require('sdk/panel').Panel;
 const sp = require('sdk/simple-prefs');
@@ -14,7 +16,7 @@ if (engine === null) {
 }
 
 sp.on('setEngine', function () {
-    var panel = Panel({
+    let panel = Panel({
         width: 200,
         contentURL: data.url('enginePreference.html'),
         contentScriptFile: data.url('enginePreference.js')

@@ -2,6 +2,8 @@
  * Created by erictsangx on 5/10/2015.
  */
 
+'use strict';
+
 const self = require('sdk/self');
 const pageMods = require('sdk/page-mod');
 const tabs = require('sdk/tabs');
@@ -26,13 +28,23 @@ function startListening(worker) {
                 let searchLink = lowLevelAPI.getSearchLink(msg.content);
                 tabs.open({
                     url: searchLink,
-                    inBackground: prefs.searchIn
+                    inBackground: prefs.searchIn,
+                    onOpen: function (tab) {
+                        if (prefs.insertAfterCurrent) {
+                            tab.index = tabs.activeTab.index + 1;
+                        }
+                    }
                 });
             }
             else {
-                tabs.open({
+                let tab = tabs.open({
                     url: msg.content,
-                    inBackground: prefs.openIn
+                    inBackground: prefs.openIn,
+                    onOpen: function (tab) {
+                        if (prefs.insertAfterCurrent) {
+                            tab.index = tabs.activeTab.index + 1;
+                        }
+                    }
                 });
             }
         }

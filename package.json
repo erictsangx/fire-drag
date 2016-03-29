@@ -1,7 +1,7 @@
 {
   "title": "Fire Drag",
   "name": "firedrag",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "drag texts and links with/without e10s",
   "main": "index.js",
   "author": "erictsangx@gmail.com",
@@ -60,6 +60,12 @@
       "title": "selectedSearchEngine",
       "value": "",
       "hidden": true
+    },
+    {
+      "type": "bool",
+      "name": "insertAfterCurrent",
+      "value": false,
+      "title": "Open a new tab right after the current tab"
     }
   ],
   "license": "MIT"
