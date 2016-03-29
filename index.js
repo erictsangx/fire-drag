@@ -29,24 +29,22 @@ function startListening(worker) {
                 tabs.open({
                     url: searchLink,
                     inBackground: prefs.searchIn,
-                    onOpen: function (tab) {
-                        if (prefs.insertAfterCurrent) {
-                            tab.index = tabs.activeTab.index + 1;
-                        }
-                    }
+                    onOpen: onOpen
                 });
             }
             else {
                 let tab = tabs.open({
                     url: msg.content,
                     inBackground: prefs.openIn,
-                    onOpen: function (tab) {
-                        if (prefs.insertAfterCurrent) {
-                            tab.index = tabs.activeTab.index + 1;
-                        }
-                    }
+                    onOpen: onOpen
                 });
             }
         }
     });
+}
+
+function onOpen(tab) {
+    if (prefs.insertAfterCurrent) {
+        tab.index = tabs.activeTab.index + 1;
+    }
 }
