@@ -4,6 +4,7 @@
 
 module.exports = {
     entry: {
+        background_scripts: "./background_scripts/index.js",
         content_scripts: "./content_scripts/index.js",
     },
     output: {

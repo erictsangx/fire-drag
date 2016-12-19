@@ -20,7 +20,9 @@ function parseLink(text) {
     };
 }
 
+
 module.exports = function (document) {
+
     const start = {};
     let distance = 0;
     let dropOnInput = false;
@@ -61,6 +63,7 @@ module.exports = function (document) {
                 }
             }
             console.log('triggerDrop', emitObj);
+            browser.runtime.sendMessage(emitObj);
         }
     });
 

@@ -38,6 +38,7 @@ jspm_packages
 .yarn-integrity
 
 
+addon/background_scripts
 addon/content_scripts
 
 .idea
