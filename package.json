@@ -1,72 +1,16 @@
 {
   "title": "Fire Drag",
   "name": "firedrag",
-  "version": "0.1.2",
-  "description": "drag texts and links with/without e10s",
-  "main": "index.js",
+  "version": "1.0.0",
+  "description": "Drag texts and links that is also fully compatible with multiprocess Firefox",
   "author": "erictsangx@gmail.com",
-  "engines": {
-    "firefox": ">=40.0a1"
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --progress --colors --watch"
   },
-  "preferences": [
-    {
-      "name": "searchIn",
-      "type": "radio",
-      "title": "Search Text in",
-      "value": false,
-      "options": [
-        {
-          "value": false,
-          "label": "Frontground"
-        },
-        {
-          "value": true,
-          "label": "Background"
-        }
-      ]
-    },
-    {
-      "name": "openIn",
-      "type": "radio",
-      "title": "Open Link in",
-      "value": true,
-      "options": [
-        {
-          "value": false,
-          "label": "Frontground"
-        },
-        {
-          "value": true,
-          "label": "Background"
-        }
-      ]
-    },
-    {
-      "type": "integer",
-      "name": "threshold",
-      "value": 50,
-      "title": "Threshold",
-      "description": "threshold for dragging distance"
-    },
-    {
-      "type": "control",
-      "name": "setEngine",
-      "label": "Click",
-      "title": "Select Search Engine"
-    },
-    {
-      "name": "selectedSearchEngine",
-      "type": "string",
-      "title": "selectedSearchEngine",
-      "value": "",
-      "hidden": true
-    },
-    {
-      "type": "bool",
-      "name": "insertAfterCurrent",
-      "value": false,
-      "title": "Open a new tab right after the current tab"
-    }
-  ],
-  "license": "MIT"
+  "devDependencies": {
+    "webpack": "^1.14.0"
+  }
 }

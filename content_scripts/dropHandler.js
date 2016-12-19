@@ -2,38 +2,39 @@
  * Created by erictsangx on 5/10/2015.
  */
 
+function parseLink(text) {
+    if (text.startsWith('http')) {
+        return {
+            link: text,
+            isLink: true
+        };
+    }
+    if (text.startsWith('www.')) {
+        return {
+            link: `http://${text}`,
+            isLink: true
+        };
+    }
+    return {
+        isLink: false
+    };
+}
 
-(function () {
-    'use strict';
+module.exports = function (document) {
     const start = {};
     let distance = 0;
     let dropOnInput = false;
 
-    function parseLink(text) {
-        if (text.startsWith('http')) {
-            return {
-                link: text,
-                isLink: true
-            };
-        }
-        if (text.startsWith('www.')) {
-            return {
-                link: `http://${text}`,
-                isLink: true
-            };
-        }
-        return {
-            isLink: false
-        };
-    }
 
-    this.addEventListener('dragstart', event => {
+    document.addEventListener('dragstart', event => {
+        console.log('dragstart');
         start.x = event.clientX;
         start.y = event.clientY;
     }, false);
 
 
-    this.addEventListener('dragend', event => {
+    document.addEventListener('dragend', event => {
+        console.log('dragend');
         if (!dropOnInput) {
             event.preventDefault();
             const link = event.dataTransfer.getData('URL');
@@ -59,17 +60,20 @@
                     emitObj.search = true;
                 }
             }
-            self.port.emit('triggerDrop', emitObj);
+            console.log('triggerDrop', emitObj);
         }
     });
 
-    this.ondrop = (event) => {
+    document.ondrop = (event) => {
+        console.log('ondrop');
         if (!dropOnInput) {
             event.preventDefault();
         }
     };
 
-    this.ondragover = (event)=> {
+    document.ondragover = (event) => {
+        console.log('ondragover');
+
         event.preventDefault();
         if (event.target.nodeName == 'INPUT') {
             dropOnInput = true;
@@ -80,5 +84,4 @@
         }
     };
 
-
-}).call(document);
+};
