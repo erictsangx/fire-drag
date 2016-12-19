@@ -1,0 +1,21 @@
+{
+  "description": "Drag texts and links that is also fully compatible with multiprocess Firefox",
+  "manifest_version": 2,
+  "name": "Fire Drag",
+  "version": "2.0",
+  "homepage_url": "https://github.com/erictsangx/fire-drag",
+  "icons": {
+    "48": "icons/drag-48.png",
+    "96": "icons/drag-96.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "index.js"
+      ]
+    }
+  ]
+}
