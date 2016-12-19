@@ -24,7 +24,11 @@
       ]
     }
   ],
+  "options_ui": {
+    "page": "options/options.html"
+  },
   "permissions": [
-    "tabs"
+    "tabs",
+    "storage"
   ]
 }
