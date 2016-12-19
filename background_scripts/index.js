@@ -5,7 +5,7 @@
 const search = require('./searchEngine');
 browser.storage.local.clear();
 const {prefs} = require('../config');
-browser.storage.local.set({prefs});
+browser.storage.local.set({options: prefs});
 
 function notify(message) {
     search(message)

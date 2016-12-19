@@ -1,39 +1,39 @@
-const gettingItem = browser.storage.local.get("prefs");
+const gettingItem = browser.storage.local.get("options");
 
 gettingItem.then(results => {
     console.log(results);
-    const {prefs} = results;
-    initSearchIn(prefs);
-    initOpenIn(prefs);
-    initThreshold(prefs);
+    const {options} = results;
+    initSearchIn(options);
+    initOpenIn(options);
+    initThreshold(options);
 });
 
-function initSearchIn(prefs) {
-    $(`input:radio[name=searchIn][value=${prefs.searchIn}]`).prop("checked", true);
+function initSearchIn(options) {
+    $(`input:radio[name=searchIn][value=${options.searchIn}]`).prop("checked", true);
     $('input:radio[name=searchIn]').change(() => {
-        prefs.searchIn = $('input:radio[name=searchIn]:checked').val();
-        browser.storage.local.set({prefs});
+        options.searchIn = $('input:radio[name=searchIn]:checked').val();
+        browser.storage.local.set({options});
     })
 }
 
-function initOpenIn(prefs) {
-    $(`input:radio[name=openIn][value=${prefs.openIn}]`).prop("checked", true);
+function initOpenIn(options) {
+    $(`input:radio[name=openIn][value=${options.openIn}]`).prop("checked", true);
     $('input:radio[name=openIn]').change(() => {
-        prefs.openIn = $('input:radio[name=openIn]:checked').val();
-        browser.storage.local.set({prefs});
+        options.openIn = $('input:radio[name=openIn]:checked').val();
+        browser.storage.local.set({options});
     })
 }
 
-function initThreshold(prefs) {
+function initThreshold(options) {
     const input = $("#threshold");
-    input.val(prefs.threshold);
+    input.val(options.threshold);
     input.on('input', event => {
         event.preventDefault();
         const value = event.target.value;
         if (!isNaN(value) && value >= 0) {
             input.val(value);
-            prefs.threshold = value;
-            browser.storage.local.set({prefs});
+            options.threshold = value;
+            browser.storage.local.set({options});
         } else {
             input.val(0)
         }

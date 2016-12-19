@@ -1,50 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="jquery-3.1.1.js"></script>
     <link rel="stylesheet" href="options.css">
 </head>
 <body>
 <div>
-    <div class="row option">
-        <span class="label">Search texts in</span>
-        <div>
-            <label>
-                <input type="radio" name="searchIn" value="active">
-                Frontground
-            </label>
-
-            <label>
-                <input type="radio" name="searchIn" value="inactive">
-                Background
-            </label>
-        </div>
-    </div>
-
-    <div class="row option">
-        <span class="label">Open links in</span>
-        <div>
-            <label>
-                <input type="radio" name="openIn" value="active">
-                Frontground
-            </label>
-
-            <label>
-                <input type="radio" name="openIn" value="inactive">
-                Background
-            </label>
-        </div>
-    </div>
-
-
-    <div class="row option">
-        <span class="label">Ignore if the distance of dragging is less than</span>
-        <div>
-            <input type="number" id="threshold" name="threshold" min="0">
-        </div>
-    </div>
+    <div id="app"></div>
 </div>
-<script src="options.js">
-</script>
+<script src="index.js"></script>
 </body>
 </html>

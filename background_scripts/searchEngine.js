@@ -4,10 +4,10 @@
 
 
 module.exports = function (searchObject) {
-    const gettingItem = browser.storage.local.get("prefs");
+    const gettingItem = browser.storage.local.get("options");
     console.log('search', searchObject);
-    gettingItem.then(({prefs}) => {
-        if (searchObject.distance >= prefs.threshold) {
+    gettingItem.then(({options}) => {
+        if (searchObject.distance >= options.threshold) {
             const querying = browser.tabs.query({currentWindow: true, active: true});
             if (searchObject.search) {
                 let searchLink = `http://www.google.com/search?q=${searchObject.content}`;
@@ -15,7 +15,7 @@ module.exports = function (searchObject) {
                 querying.then(tabs => {
                     browser.tabs.create({
                         url: searchLink,
-                        active: prefs.openIn == 'active',
+                        active: options.openIn == 'active',
                         index: tabs[0].index + 1
                     });
                 });
@@ -25,7 +25,7 @@ module.exports = function (searchObject) {
                 querying.then(tabs => {
                     browser.tabs.create({
                         url: searchObject.content,
-                        active: prefs.searchIn == 'active',
+                        active: options.searchIn == 'active',
                         index: tabs[0].index + 1
                     });
                 });
