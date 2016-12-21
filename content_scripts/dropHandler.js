@@ -46,11 +46,12 @@ module.exports = () => {
         search: true,
         distance
       };
+
       if (link) {
-        emitObj.content = link;
+        emitObj.content = link.trim();
         emitObj.search = false;
       } else {
-        const parsed = parseLink(text);
+        const parsed = parseLink(text.trim());
         if (parsed.isLink) {
           emitObj.content = parsed.link;
           emitObj.search = false;
