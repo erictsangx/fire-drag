@@ -2,10 +2,6 @@
  * Created by erictsangx on 19/12/2016.
  */
 
-console.log('hello');
-
-const initHandler = require('./dropHandler');
-
+import initHandler from './dropHandler';
 initHandler();
 
-console.log('world');

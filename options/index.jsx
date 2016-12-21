@@ -2,32 +2,25 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import RadioOption from './RadioOption';
 import NumberOption from './NumberOption';
+import { saveOptions, loadOptions } from '../lang';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      textActive: true,
-      linkActive: false,
-      threshold: 100
-    };
+    this.state = {};
   }
 
-  // componentDidMount() {
-  //     const gettingItem = browser.storage.local.get("options");
-  //     gettingItem.then(({options}) => {
-  //         if (Object.keys(options).length > 0) {
-  //             this.setState('options', options)
-  //         } else {
-  //             const {options} = this.state;
-  //             browser.storage.local.set(options);
-  //         }
-  //     })
-  // }
+  componentWillMount() {
+    loadOptions().then((options) => {
+      this.setState(options);
+    });
+  }
 
   handleChange(key, value) {
     const options = this.state;
-    this.setState({ ...options, [key]: value });
+    const newOptions = { ...options, [key]: value };
+    this.setState(newOptions);
+    saveOptions(newOptions);
   }
 
   render() {

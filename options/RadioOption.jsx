@@ -6,7 +6,7 @@ export default function RadioOption({ label, active, change }) {
       <span className="label">{label}</span>
       <div>
         <input type="radio" name={label} checked={active} onChange={() => change(true)} />
-        <span>Frontground</span>
+        <span>Foreground</span>
         <input type="radio" name={label} checked={!active} onChange={() => change(false)} />
         <span>Background</span>
       </div>

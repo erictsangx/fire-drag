@@ -4,9 +4,6 @@
 
 import search from './searchEngine';
 
-browser.storage.local.clear();
-browser.storage.local.set({ options: {} });
-
 function notify(message) {
   search(message);
 }
