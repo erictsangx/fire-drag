@@ -2,11 +2,19 @@
  * Created by erictsangx on 21/12/2016.
  */
 
+
+export const IGNORED_TAG = ['INPUT', 'HTML'];
+
 const defaultOptions = {
   textActive: true,
   linkActive: false,
+  imageActive: false,
   threshold: 100
 };
+
+export const IMAGE_TYPE = 'IMAGE_TYPE';
+export const TEXT_TYPE = 'TEXT_TYPE';
+export const LINK_TYPE = 'LINK_TYPE';
 
 export function saveOptions(options) {
   console.info('save options', options);
@@ -32,5 +40,8 @@ export function loadOptions() {
 }
 
 export function createTab(props) {
-  browser.tabs.create(props);
+  const query = browser.tabs.query({ currentWindow: true, active: true });
+  query.then((tabs) => {
+    browser.tabs.create({ ...props, index: tabs[0].index + 1 });
+  });
 }

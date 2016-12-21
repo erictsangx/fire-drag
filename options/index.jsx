@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { textActive, linkActive, threshold } = this.state;
+    const { textActive, linkActive, imageActive, threshold } = this.state;
     return (
       <div>
         <RadioOption
@@ -39,6 +39,13 @@ class App extends React.Component {
           active={linkActive}
           change={(value) => {
             this.handleChange('linkActive', value);
+          }}
+        />
+        <RadioOption
+          label="Open images in"
+          active={imageActive}
+          change={(value) => {
+            this.handleChange('imageActive', value);
           }}
         />
         <NumberOption

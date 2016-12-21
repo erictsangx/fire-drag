@@ -1,31 +1,32 @@
 /**
  * Created by erictsangx on 19/12/2016.
  */
-import { loadOptions, createTab } from '../lang';
+import { loadOptions, createTab, TEXT_TYPE, IMAGE_TYPE, LINK_TYPE } from '../lang';
 
-export default (searchObject) => {
-  console.log('search', searchObject);
+export default ({ type, content, distance }) => {
   loadOptions().then((options) => {
-    if (searchObject.distance >= options.threshold) {
-      const querying = browser.tabs.query({ currentWindow: true, active: true });
-      if (searchObject.search) {
-        const searchLink = `http://www.google.com/search?q=${searchObject.content}`;
-
-        querying.then((tabs) => {
+    if (distance >= options.threshold) {
+      switch (type) {
+        case IMAGE_TYPE:
           createTab({
-            url: searchLink,
-            active: options.textActive,
-            index: tabs[0].index + 1
+            url: content,
+            active: options.imageActive,
           });
-        });
-      } else {
-        querying.then((tabs) => {
+          break;
+        case LINK_TYPE:
           createTab({
-            url: searchObject.content,
+            url: content,
             active: options.linkActive,
-            index: tabs[0].index + 1
           });
-        });
+          break;
+        case TEXT_TYPE:
+          createTab({
+            url: `http://www.google.com/search?q=${content}`,
+            active: options.textActive,
+          });
+          break;
+        default:
+          console.error('should not happen');
       }
     }
   });

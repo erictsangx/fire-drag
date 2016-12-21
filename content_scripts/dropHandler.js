@@ -1,6 +1,7 @@
 /**
  * Created by erictsangx on 5/10/2015.
  */
+import { IGNORED_TAG, IMAGE_TYPE, LINK_TYPE, TEXT_TYPE } from '../lang';
 
 function parseLink(text) {
   if (text.startsWith('http')) {
@@ -20,67 +21,75 @@ function parseLink(text) {
   };
 }
 
+function parseDataTransfer(data) {
+  const array = [...data.types];
+  if (array.includes('application/x-moz-nativeimage')) {
+    return {
+      type: IMAGE_TYPE,
+      content: data.getData('text/uri-list').trim()
+    };
+  }
 
-module.exports = () => {
+  if (array.includes('text/uri-list')) {
+    return {
+      type: LINK_TYPE,
+      content: data.getData('text/uri-list').trim()
+    };
+  }
+
+  return {
+    type: TEXT_TYPE,
+    content: data.getData('text').trim()
+  };
+}
+
+
+export default () => {
   const start = {};
   let distance = 0;
-  let dropOnInput = false;
-
+  let preventDrop = false;
 
   document.addEventListener('dragstart', (event) => {
-    console.log('dragstart');
     start.x = event.clientX;
     start.y = event.clientY;
   }, false);
 
 
   document.addEventListener('dragend', (event) => {
-    console.log('dragend');
-    if (!dropOnInput) {
+    if (!preventDrop) {
       event.preventDefault();
-      const link = event.dataTransfer.getData('URL');
-      const text = event.dataTransfer.getData('text');
+
+      const payload = parseDataTransfer(event.dataTransfer);
 
       const emitObj = {
-        content: '',
-        search: true,
+        ...payload,
         distance
       };
 
-      if (link) {
-        emitObj.content = link.trim();
-        emitObj.search = false;
-      } else {
-        const parsed = parseLink(text.trim());
+      if (payload.type === TEXT_TYPE) {
+        const parsed = parseLink(payload.content);
         if (parsed.isLink) {
           emitObj.content = parsed.link;
-          emitObj.search = false;
-        } else {
-          emitObj.content = text;
-          emitObj.search = true;
+          emitObj.typr = LINK_TYPE;
         }
       }
-      console.log('triggerDrop', emitObj);
       browser.runtime.sendMessage(emitObj);
     }
   });
 
   document.ondrop = (event) => {
-    console.log('ondrop');
-    if (!dropOnInput) {
+    if (!preventDrop) {
       event.preventDefault();
     }
   };
 
   document.ondragover = (event) => {
-    console.log('ondragover');
-
     event.preventDefault();
-    if (event.target.nodeName === 'INPUT') {
-      dropOnInput = true;
+    if (IGNORED_TAG.includes(event.target.nodeName)) {
+      preventDrop = true;
     } else {
       distance = Math.hypot(event.clientX - start.x, event.clientY - start.y);
-      dropOnInput = false;
+      preventDrop = false;
     }
   };
 };
