@@ -40,6 +40,5 @@ jspm_packages
 
 addon/background_scripts
 addon/content_scripts
-addon/options/index.js
-addon/options/index.js.map
+addon/options/dist
 .idea

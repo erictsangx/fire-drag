@@ -11,7 +11,7 @@
   },
   "background": {
     "scripts": [
-      "background_scripts/index.js"
+      "background_scripts/dist/index.js"
     ]
   },
   "content_scripts": [
@@ -20,7 +20,7 @@
         "<all_urls>"
       ],
       "js": [
-        "content_scripts/index.js"
+        "content_scripts/dist/index.js"
       ]
     }
   ],

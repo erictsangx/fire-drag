@@ -1,28 +1,29 @@
-import React from "react";
+import React from 'react';
 
 function isNumber(obj) {
-    return !isNaN(parseFloat(obj))
+  return !isNaN(parseFloat(obj));
 }
 function parseNumber(value) {
-    if (isNumber(value) && value >= 1) {
-        return value
-    } else {
-        return 1
-    }
+  return isNumber(value) && value >= 1 ? value : 1;
 }
 
-export default function NumberOption({label, value, change}) {
-    return (
-        <div className="row option">
-            <span className="label">{label}</span>
-            <div>
-                <input type="number" min="0" value={value} onChange={event => {
-                    event.preventDefault();
-                    const _value = event.currentTarget.value;
-                    const value = parseNumber(_value);
-                    change(value)
-                }}/>
-            </div>
-        </div>
-    )
+export default function NumberOption({ label, value, change }) {
+  return (
+    <div className="row option">
+      <span className="label">{label}</span>
+      <div>
+        <input
+          type="number"
+          min="0"
+          value={value}
+          onChange={(event) => {
+            event.preventDefault();
+            const rawValue = event.currentTarget.value;
+            const newValue = parseNumber(rawValue);
+            change(newValue);
+          }}
+        />
+      </div>
+    </div>
+  );
 }

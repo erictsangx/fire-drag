@@ -2,10 +2,10 @@
  * Created by erictsangx on 19/12/2016.
  */
 
-console.log("hello");
+console.log('hello');
 
 const initHandler = require('./dropHandler');
 
-initHandler(document);
+initHandler();
 
-console.log("world");
+console.log('world');

@@ -2,13 +2,13 @@
  * Created by erictsangx on 19/12/2016.
  */
 
-const search = require('./searchEngine');
+import search from './searchEngine';
+
 browser.storage.local.clear();
-const {prefs} = require('../config');
-browser.storage.local.set({options: prefs});
+browser.storage.local.set({ options: {} });
 
 function notify(message) {
-    search(message)
+  search(message);
 }
 
 browser.runtime.onMessage.addListener(notify);
