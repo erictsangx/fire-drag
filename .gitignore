@@ -42,3 +42,5 @@ addon/background_scripts
 addon/content_scripts
 addon/options/dist
 .idea
+
+addon/web-ext-artifacts/

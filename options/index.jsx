@@ -2,7 +2,8 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import RadioOption from './RadioOption';
 import NumberOption from './NumberOption';
-import { saveOptions, loadOptions } from '../lang';
+import DropdownOption from './DropdownOption';
+import { saveOptions, loadOptions, engineList } from '../lang';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { textActive, linkActive, imageActive, threshold } = this.state;
+    const { textActive, linkActive, imageActive, threshold, defaultSearch } = this.state;
     return (
       <div>
         <RadioOption
@@ -55,9 +56,24 @@ class App extends React.Component {
             this.handleChange('threshold', value);
           }}
         />
+        <DropdownOption
+          label="Select Search Engine"
+          data={engineList}
+          value={defaultSearch}
+          change={(value) => {
+            this.handleChange('defaultSearch', value);
+          }}
+        />
       </div>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM
+  .render(
+    <App />,
+    document
+      .getElementById(
+        'app'
+      ))
+;

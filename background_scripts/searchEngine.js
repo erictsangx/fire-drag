@@ -1,7 +1,15 @@
 /**
  * Created by erictsangx on 19/12/2016.
  */
-import { loadOptions, createTab, TEXT_TYPE, IMAGE_TYPE, LINK_TYPE } from '../lang';
+import { loadOptions, createTab, TEXT_TYPE, IMAGE_TYPE, LINK_TYPE, engineList } from '../lang';
+
+
+function submitSearch(label, query) {
+  const engine = engineList.find((item) => {
+    return item.label === label;
+  });
+  return encodeURI(engine.url.replace('@@', query));
+}
 
 export default ({ type, content, distance }) => {
   loadOptions().then((options) => {
@@ -21,7 +29,7 @@ export default ({ type, content, distance }) => {
           break;
         case TEXT_TYPE:
           createTab({
-            url: `http://www.google.com/search?q=${content}`,
+            url: submitSearch(options.defaultSearch, content),
             active: options.textActive,
           });
           break;
