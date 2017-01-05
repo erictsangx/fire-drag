@@ -8,12 +8,11 @@ export const IGNORED_TAG = ['INPUT', 'HTML'];
 export const engineList = [
   { label: 'Google', url: 'https://www.google.com/search?q=@@' },
   { label: 'Yahoo', url: 'https://search.yahoo.com/search?p=@@&fr=sfp&fr2=sb-top-search&iscqry=' },
-  { label: 'Bing', url: 'https://www.bing.com/search?q=@@}' },
-  { label: 'Amazon', url: 'https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=@@}' },
-  { label: 'DuckDuckGo', url: 'https://duckduckgo.com/?q=@@}' },
-  { label: 'Twitter', url: 'https://twitter.com/search?q=@@&src=typd}' },
+  { label: 'Bing', url: 'https://www.bing.com/search?q=@@' },
+  { label: 'Amazon', url: 'https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=@@' },
+  { label: 'DuckDuckGo', url: 'https://duckduckgo.com/?q=@@' },
+  { label: 'Twitter', url: 'https://twitter.com/search?q=@@&src=typd' },
   { label: 'Wikipedia(en)', url: 'https://en.wikipedia.org/w/index.php?search=@@&title=Special:Search&go=Go' }
-
 ];
 
 
@@ -22,7 +21,7 @@ const defaultOptions = {
   linkActive: false,
   imageActive: false,
   threshold: 100,
-  defaultSearch: engineList[0].value
+  defaultSearch: engineList[0].label
 };
 
 export const IMAGE_TYPE = 'IMAGE_TYPE';

@@ -17,7 +17,8 @@ PS: NO RESTART but need to refresh webpages.
 preferences:
 <ul>
 <li>froeground/background</li>
-<li>threshold</li>
+<li>drag distance</li>
+<li>search engines</li>
 </ul>
 
 V1.0.0: finally migrated to the new FF WebExtension SDK.

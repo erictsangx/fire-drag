@@ -1,7 +1,7 @@
 {
   "title": "Fire Drag",
   "name": "firedrag",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Drag texts and links that is also fully compatible with multiprocess Firefox",
   "author": "erictsangx@gmail.com",
   "license": "MIT",
