@@ -44,3 +44,5 @@ addon/options/dist
 .idea
 
 addon/web-ext-artifacts/
+
+addon/Archive.zip
