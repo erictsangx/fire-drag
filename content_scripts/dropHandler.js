@@ -1,7 +1,7 @@
 /**
  * Created by erictsangx on 5/10/2015.
  */
-import { IGNORED_TAG, IMAGE_TYPE, LINK_TYPE, TEXT_TYPE } from '../lang';
+import { IGNORED_TAG, TEXT_TYPE, IMAGE_TYPE, LINK_TYPE } from '../constants'
 
 function parseLink(text) {
   if (text.startsWith('http')) {

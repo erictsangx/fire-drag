@@ -2,9 +2,6 @@
  * Created by erictsangx on 21/12/2016.
  */
 
-
-export const IGNORED_TAG = ['INPUT', 'HTML'];
-
 export const engineList = [
   { label: 'Google', url: 'https://www.google.com/search?q=@@' },
   { label: 'Yahoo', url: 'https://search.yahoo.com/search?p=@@&fr=sfp&fr2=sb-top-search&iscqry=' },
@@ -24,9 +21,6 @@ const defaultOptions = {
   defaultSearch: engineList[0].label
 };
 
-export const IMAGE_TYPE = 'IMAGE_TYPE';
-export const TEXT_TYPE = 'TEXT_TYPE';
-export const LINK_TYPE = 'LINK_TYPE';
 
 export function saveOptions(options) {
   console.info('save options', options);

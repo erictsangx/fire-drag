@@ -1,7 +1,8 @@
 /**
  * Created by erictsangx on 19/12/2016.
  */
-import { loadOptions, createTab, TEXT_TYPE, IMAGE_TYPE, LINK_TYPE, engineList } from '../lang';
+import { loadOptions, createTab, engineList } from '../lang';
+import { TEXT_TYPE, IMAGE_TYPE, LINK_TYPE } from '../constants';
 
 
 function submitSearch(label, query) {
