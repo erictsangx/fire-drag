@@ -3,9 +3,16 @@
  */
 
 import search from './searchEngine';
+import { saveOptions, loadOptions, defaultOptions } from '../lang'
 
 function notify(message) {
   search(message);
 }
 
 browser.runtime.onMessage.addListener(notify);
+
+loadOptions().then((options) => {
+  Object.assign(defaultOptions, options);
+  saveOptions(defaultOptions)
+});
+

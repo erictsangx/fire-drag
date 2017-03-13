@@ -2,10 +2,10 @@ import React from 'react';
 
 function renderOption(data, defaultValue) {
   return data.map((item) => {
-    if (defaultValue === item.label) {
-      return (<option value={item.label} selected>{item.label}</option>);
+    if (defaultValue === item.value) {
+      return (<option value={item.value} selected>{item.label}</option>);
     }
-    return (<option value={item.label}>{item.label}</option>);
+    return (<option value={item.value}>{item.label}</option>);
   });
 }
 

@@ -2,7 +2,7 @@
   "description": "Drag texts and links that is also fully compatible with multiprocess Firefox",
   "manifest_version": 2,
   "name": "Fire Drag",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "homepage_url": "https://github.com/erictsangx/fire-drag",
   "author": "erictsangx@gmail.com",
   "icons": {
