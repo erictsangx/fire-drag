@@ -1,34 +1,39 @@
+#app {
+  background-color: rgb(251, 251, 251);
+}
+
 .sliderContainer {
-    width: 70%;
+  width: 70%;
 }
 
 #thresholdSlider {
-    margin-right: 50px;
+  margin-right: 50px;
 }
 
 #custom-handle {
-    width: 3em;
-    height: 1.6em;
-    top: 50%;
-    margin-top: -.8em;
-    text-align: center;
-    line-height: 1.6em;
+  width: 3em;
+  height: 1.6em;
+  top: 50%;
+  margin-top: -.8em;
+  text-align: center;
+  line-height: 1.6em;
 }
 
 .label {
-    font-size: 1rem;
-    font-weight: 800;
+  font-size: 1rem;
+  font-weight: 800;
+  mix-blend-mode: darken;
 }
 
 .row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .option {
-    padding: 12px 0;
-    border-bottom: 1px solid #555555;
+  padding: 12px 0;
+  border-bottom: 1px solid #555555;
 }
