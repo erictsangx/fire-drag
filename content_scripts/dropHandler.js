@@ -70,7 +70,7 @@ export default () => {
         const parsed = parseLink(payload.content);
         if (parsed.isLink) {
           emitObj.content = parsed.link;
-          emitObj.typr = LINK_TYPE;
+          emitObj.type = LINK_TYPE;
         }
       }
       browser.runtime.sendMessage(emitObj);
