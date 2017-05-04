@@ -5,9 +5,9 @@ import { loadOptions, createTab, engineList } from '../lang';
 import { TEXT_TYPE, IMAGE_TYPE, LINK_TYPE } from '../constants';
 
 
-function submitSearch(label, query) {
+function submitSearch(value, query) {
   const engine = engineList.find((item) => {
-    return item.label === label;
+    return item.value === value;
   });
   return encodeURI(engine.url.replace('@@', query));
 }

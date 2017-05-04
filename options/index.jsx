@@ -3,7 +3,7 @@ import React from 'react';
 import RadioOption from './RadioOption';
 import NumberOption from './NumberOption';
 import DropdownOption from './DropdownOption';
-import { saveOptions, loadOptions, engineList } from '../lang';
+import { saveOptions, loadOptions, engineList, tabPositions } from '../lang';
 
 class App extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { textActive, linkActive, imageActive, threshold, defaultSearch } = this.state;
+    const { textActive, linkActive, imageActive, threshold, defaultSearch, defaultPosition } = this.state;
     return (
       <div>
         <RadioOption
@@ -64,16 +64,20 @@ class App extends React.Component {
             this.handleChange('defaultSearch', value);
           }}
         />
+        <DropdownOption
+          label="New Tab Position"
+          data={tabPositions}
+          value={defaultPosition}
+          change={(value) => {
+            this.handleChange('defaultPosition', value);
+          }}
+        />
       </div>
     );
   }
 }
 
-ReactDOM
-  .render(
-    <App />,
-    document
-      .getElementById(
-        'app'
-      ))
-;
+ReactDOM.render(
+  <App />,
+  document.getElementById('app')
+);
