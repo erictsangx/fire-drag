@@ -16,7 +16,7 @@ PS: NO RESTART but need to refresh webpages.
 
 preferences:
 <ul>
-<li>froeground/background</li>
+<li>foreground/background</li>
 <li>drag distance</li>
 <li>search engines</li>
 </ul>
