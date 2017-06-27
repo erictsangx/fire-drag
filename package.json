@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "react-dom": "^15.4.1",
+    "valid-url": "^1.0.9"
   }
 }
