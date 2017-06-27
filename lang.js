@@ -37,7 +37,7 @@ export const engineList = [
     label: 'Wikipedia(en)',
     value: 'Wikipedia(en)',
     url: 'https://en.wikipedia.org/w/index.php?search=@@&title=Special:Search&go=Go'
-  }
+  },
   {
     label: 'Yandex',
     value: 'Yandex',
