@@ -19,7 +19,7 @@ function parseLink(text) {
     };
   } else if (validUrl.isHttpsUri(httpsText)){
     return {
-      link: httpText,
+      link: httpsText,
       isLink: true
     };
   } else {
