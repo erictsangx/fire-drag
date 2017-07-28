@@ -2,22 +2,22 @@
  * Created by erictsangx on 5/10/2015.
  */
 import { IGNORED_TAG, TEXT_TYPE, IMAGE_TYPE, LINK_TYPE } from '../constants'
-import validUrl from 'valid-url'
+import isUrl from 'is-url'
 
 function parseLink(text) {
   let httpText = "http://" + text;
   let httpsText = "https://" + text;
-  if (validUrl.isWebUri(text)) {
+  if (isUrl(text)) {
     return {
       link: text,
       isLink: true
     };
-  } else if (validUrl.isHttpUri(httpText)){
+  } else if (isUrl(httpText)){
     return {
       link: httpText,
       isLink: true
     };
-  } else if (validUrl.isHttpsUri(httpsText)){
+  } else if (isUrl(httpsText)){
     return {
       link: httpsText,
       isLink: true
