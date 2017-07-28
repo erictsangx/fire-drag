@@ -29,6 +29,6 @@
   "dependencies": {
     "is-url": "^1.2.2",
     "react": "^15.4.1",
-    "react-dom": "^15.4.1",
+    "react-dom": "^15.4.1"
   }
 }
