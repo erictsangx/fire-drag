@@ -9,6 +9,7 @@
     "48": "icons/drag-48.png",
     "96": "icons/drag-96.png"
   },
+  "content_security_policy": "default-src moz-extension://119e2c5d-5cfa-2a43-8a24-35b950ab5144 'self' 'unsafe-eval';",
   "background": {
     "scripts": [
       "core/constants.js",

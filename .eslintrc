@@ -1,19 +1,19 @@
 {
-  "extends": "eslint-config-airbnb",
+  "extends": "standard",
   "env": {
-    "browser": true,
-    "node": true,
-    "mocha": true
+    "browser": true
   },
   "rules": {
-    "semi": ["error", "never"],
+    "semi": [
+      "error",
+      "never"
+    ],
     "no-trailing-spaces": [
       2,
       {
         "skipBlankLines": true
       }
     ],
-    "react/no-multi-comp": 0,
     "import/default": 0,
     "import/no-duplicates": 0,
     "import/named": 0,
@@ -34,19 +34,9 @@
     "no-unused-vars": 1,
     "spaced-comment": 0
   },
-  "plugins": [
-    "import"
-  ],
-  "settings": {
-    "import/parser": "babel-eslint",
-    "import/resolve": {
-      "moduleDirectory": [
-        "node_modules",
-        "src"
-      ]
-    }
-  },
+  "plugins": [],
   "globals": {
-    "browser": true
+    "browser": true,
+    "Vue": true
   }
 }

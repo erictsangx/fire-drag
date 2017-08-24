@@ -6,29 +6,19 @@
   "author": "erictsangx@gmail.com",
   "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "watch": "webpack --progress --colors --watch"
+    "postinstall": "cp ./node_modules/vue/dist/vue.js ./addon/options/vue.js",
+    "zip": "cp ./node_modules/vue/dist/vue.min.js ./addon/options/vue.js && zip -r -FS fire-drag.zip addon/*"
   },
   "devDependencies": {
-    "babel-core": "^6.21.0",
-    "babel-loader": "^6.2.10",
-    "babel-plugin-transform-class-properties": "^6.19.0",
-    "babel-plugin-transform-object-rest-spread": "^6.20.2",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-2": "^6.18.0",
-    "eslint": "^3.12.2",
-    "eslint-config-airbnb": "^13.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^2.0.0",
-    "eslint-plugin-react": "^6.8.0",
-    "web-ext": "^1.6.0",
-    "webpack": "^1.14.0"
+    "eslint": "^4.5.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "web-ext": "^2.0.0"
   },
   "dependencies": {
-    "is-url": "^1.2.2",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "vue": "^2.4.2"
   }
 }
