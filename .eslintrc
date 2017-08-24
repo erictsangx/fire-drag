@@ -6,6 +6,7 @@
     "mocha": true
   },
   "rules": {
+    "semi": ["error", "never"],
     "no-trailing-spaces": [
       2,
       {

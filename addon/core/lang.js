@@ -2,7 +2,7 @@
  * Created by erictsangx on 21/12/2016.
  */
 
-export const engineList = [
+const engineList = [
   {
     label: 'Google',
     value: 'Google',
@@ -51,7 +51,7 @@ const LEFT = "LEFT";
 const FIRST = "FIRST";
 const LAST = "LAST";
 
-export const tabPositions = [
+const tabPositions = [
   { label: 'Right of the current tab', value: RIGHT },
   { label: 'Left of the current tab', value: LEFT },
   { label: 'Always first', value: FIRST },
@@ -59,7 +59,7 @@ export const tabPositions = [
 ];
 
 
-export const defaultOptions = {
+const defaultOptions = {
   textActive: true,
   linkActive: false,
   imageActive: false,
@@ -69,12 +69,12 @@ export const defaultOptions = {
 };
 
 
-export function saveOptions(options) {
+function saveOptions(options) {
   browser.storage.local.set({ options });
 }
 
 
-export function loadOptions() {
+function loadOptions() {
   return new Promise((resolve, reject) => {
     const query = browser.storage.local.get('options');
     query.then((result) => {
@@ -90,7 +90,7 @@ export function loadOptions() {
   });
 }
 
-export function createTab(props) {
+function createTab(props) {
   const query = browser.tabs.query({ currentWindow: true, active: true });
 
   browser.tabs.query({}).then((allTabs) => {

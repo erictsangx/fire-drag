@@ -1,8 +1,8 @@
 /**
  * Created by erictsangx on 19/12/2016.
  */
-import { loadOptions, createTab, engineList } from '../lang';
-import { TEXT_TYPE, IMAGE_TYPE, LINK_TYPE } from '../constants';
+import { loadOptions, createTab, engineList } from '../addon/core/lang';
+import { TEXT_TYPE, IMAGE_TYPE, LINK_TYPE } from '../addon/core/constants';
 
 
 function submitSearch(value, query) {

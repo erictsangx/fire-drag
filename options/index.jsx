@@ -3,7 +3,7 @@ import React from 'react';
 import RadioOption from './RadioOption';
 import NumberOption from './NumberOption';
 import DropdownOption from './DropdownOption';
-import { saveOptions, loadOptions, engineList, tabPositions } from '../lang';
+import { saveOptions, loadOptions, engineList, tabPositions } from '../addon/core/lang';
 
 class App extends React.Component {
   constructor(props) {

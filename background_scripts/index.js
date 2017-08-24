@@ -3,7 +3,7 @@
  */
 
 import search from './searchEngine';
-import { saveOptions, loadOptions, defaultOptions } from '../lang'
+import { saveOptions, loadOptions, defaultOptions } from '../addon/core/lang'
 
 function notify(message) {
   search(message);

@@ -1,7 +1,7 @@
 /**
  * Created by erictsangx on 5/10/2015.
  */
-import { IGNORED_TAG, TEXT_TYPE, IMAGE_TYPE, LINK_TYPE } from '../constants'
+import { IGNORED_TAG, TEXT_TYPE, IMAGE_TYPE, LINK_TYPE } from '../addon/core/constants'
 import isUrl from 'is-url'
 
 function parseLink(text) {
