@@ -2,23 +2,31 @@
  * Created by erictsangx on 5/10/2015.
  */
 import { IGNORED_TAG, TEXT_TYPE, IMAGE_TYPE, LINK_TYPE } from '../constants'
+import isUrl from 'is-url'
 
 function parseLink(text) {
-  if (text.startsWith('http')) {
+  let httpText = "http://" + text;
+  let httpsText = "https://" + text;
+  if (isUrl(text)) {
     return {
       link: text,
       isLink: true
     };
-  }
-  if (text.startsWith('www.')) {
+  } else if (isUrl(httpText)){
     return {
-      link: `http://${text}`,
+      link: httpText,
       isLink: true
     };
+  } else if (isUrl(httpsText)){
+    return {
+      link: httpsText,
+      isLink: true
+    };
+  } else {
+    return {
+      isLink: false
+    };
   }
-  return {
-    isLink: false
-  };
 }
 
 function parseDataTransfer(data) {
