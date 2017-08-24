@@ -59,16 +59,6 @@ const tabPositions = [
 ]
 
 
-const defaultOptions = {
-  textActive: true,
-  linkActive: false,
-  imageActive: false,
-  threshold: 100,
-  defaultSearch: engineList[0].label,
-  defaultPosition: tabPositions[0].value
-}
-
-
 const debug = true
 
 function DEBUG(...args) {
