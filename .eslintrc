@@ -35,7 +35,6 @@
     "spaced-comment": 0
   },
   "plugins": [
-    "react",
     "import"
   ],
   "settings": {

@@ -11,6 +11,8 @@
   },
   "background": {
     "scripts": [
+      "core/constants.js",
+      "core/lang.js",
       "background_scripts/index.js"
     ]
   },
