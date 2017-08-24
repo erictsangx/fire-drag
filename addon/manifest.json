@@ -5,11 +5,16 @@
   "version": "2.0.0",
   "homepage_url": "https://github.com/erictsangx/fire-drag",
   "author": "erictsangx@gmail.com",
+  "applications": {
+    "gecko": {
+      "id": "erictsangx@gmail.com"
+    }
+  },
   "icons": {
     "48": "icons/drag-48.png",
     "96": "icons/drag-96.png"
   },
-  "content_security_policy": "default-src moz-extension://119e2c5d-5cfa-2a43-8a24-35b950ab5144 'self' 'unsafe-eval';",
+  "content_security_policy": "default-src moz-extension://erictsangx@gmail.com 'self' 'unsafe-eval';",
   "background": {
     "scripts": [
       "core/constants.js",
