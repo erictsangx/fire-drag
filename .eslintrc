@@ -38,6 +38,8 @@
   "globals": {
     "browser": true,
     "Vue": true,
-    "DEBUG": true
+    "DEBUG": true,
+    "saveOptions": true,
+    "loadOptions": true
   }
 }

@@ -64,6 +64,32 @@ Vue.component('number-option', {
   }
 })
 
+Vue.component('dropdown-option', {
+  template: `
+    <div class="row option">
+      <span class="label">{{label}}</span>
+      <div>
+      <select v-model="selected">
+        <option v-for="option in options" v-bind:value="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+      </div>
+    </div>
+  `,
+  props: ['label', 'options', 'default'],
+  computed: {
+    selected: {
+      get: function () {
+        return this.default
+      },
+      set: function (newValue) {
+        this.$emit('change', {value: newValue})
+      }
+    }
+  }
+})
+
 async function init () {
   const opts = await loadOptions()
 
@@ -77,9 +103,32 @@ async function init () {
   <radio-option label="Open links in" :active="linkActive" @change="setLinkActive"></radio-option>
   <radio-option label="Open images in" :active="imageActive" @change="setImageActive"></radio-option>
   <number-option label="Ignore if the distance of dragging is less than" :value="threshold" @change="setThreshold"></number-option>
+
+  <dropdown-option
+    label="Select Search Engine"
+    :options="engineList"
+    :default="defaultSearch"
+    @change="setSearch"
+  ></dropdown-option>
+  
+  <dropdown-option
+    label="New Tab Position"
+    :options="tabPositions"
+    :default="defaultPosition"
+    @change="setPosition"
+  ></dropdown-option>
+  
 </div> 
   `,
     data: {...opts},
+    computed: {
+      engineList: function () {
+        return engineList
+      },
+      tabPositions: function () {
+        return tabPositions
+      }
+    },
     methods: {
       setTextActive: async function ({active}) {
         this.textActive = active
@@ -95,6 +144,14 @@ async function init () {
       },
       setThreshold: async function ({value}) {
         this.threshold = value
+        await saveOptions({...this.$data})
+      },
+      setSearch: async function ({value}) {
+        this.defaultSearch = value
+        await saveOptions({...this.$data})
+      },
+      setPosition: async function ({value}) {
+        this.defaultPosition = value
         await saveOptions({...this.$data})
       }
     }
