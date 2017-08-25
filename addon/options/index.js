@@ -33,6 +33,37 @@ Vue.component('radio-option', {
   }
 })
 
+function isNumber (obj) {
+  return !isNaN(parseFloat(obj))
+}
+
+function parseNumber (value) {
+  return isNumber(value) && value >= 1 ? value : 1
+}
+
+Vue.component('number-option', {
+  template: `
+    <div class="row option">
+      <span class="label">{{label}}</span>
+      <div>
+        <input type="number" min="0" v-model="tmp" />
+      </div>
+    </div>
+  `,
+  props: ['label', 'value'],
+  computed: {
+    tmp: {
+      get: function () {
+        return this.value
+      },
+      set: function (rawValue) {
+        const newValue = parseNumber(rawValue)
+        this.$emit('change', {value: newValue})
+      }
+    }
+  }
+})
+
 async function init () {
   const opts = await loadOptions()
 
@@ -41,12 +72,11 @@ async function init () {
   const app = new Vue({
     el: '#app',
     template: `
-  <div>
-  
+<div>
   <radio-option label="Search texts in" :active="textActive" @change="setTextActive"></radio-option>
   <radio-option label="Open links in" :active="linkActive" @change="setLinkActive"></radio-option>
   <radio-option label="Open images in" :active="imageActive" @change="setImageActive"></radio-option>
-  
+  <number-option label="Ignore if the distance of dragging is less than" :value="threshold" @change="setThreshold"></number-option>
 </div> 
   `,
     data: {...opts},
@@ -61,6 +91,10 @@ async function init () {
       },
       setImageActive: async function ({active}) {
         this.imageActive = active
+        await saveOptions({...this.$data})
+      },
+      setThreshold: async function ({value}) {
+        this.threshold = value
         await saveOptions({...this.$data})
       }
     }
