@@ -37,6 +37,7 @@
   "plugins": [],
   "globals": {
     "browser": true,
-    "Vue": true
+    "Vue": true,
+    "DEBUG": true
   }
 }

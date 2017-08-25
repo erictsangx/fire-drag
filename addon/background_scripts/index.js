@@ -4,25 +4,12 @@
 
 DEBUG('background start')
 
-async function saveOptions(options) {
-  await browser.storage.local.set({ options })
-}
-
-async function loadOptions() {
-  const result = await browser.storage.local.get('options')
-  if (result && result.options) {
-    return result.options
-  }
-  await saveOptions(defaultOptions)
-  return defaultOptions
-}
-
-async function createTab(props) {
+async function createTab (props) {
   const allTabs = await browser.tabs.query({})
 
   const options = await loadOptions()
 
-  const tabs = await browser.tabs.query({ currentWindow: true, active: true })
+  const tabs = await browser.tabs.query({currentWindow: true, active: true})
 
   let position = tabs[0].index + 1
   if (options.defaultPosition === LEFT) {
@@ -38,18 +25,17 @@ async function createTab(props) {
     position = 0
   }
 
-  await browser.tabs.create({ ...props, index: position })
+  await browser.tabs.create({...props, index: position})
 }
 
-
-function submitSearch(value, query) {
+function submitSearch (value, query) {
   const engine = engineList.find((item) => {
     return item.value === value
   })
   return encodeURI(engine.url.replace('@@', query))
 }
 
-async function search({ type, content, distance }) {
+async function search ({type, content, distance}) {
   const options = await loadOptions()
 
   if (distance >= options.threshold) {
@@ -78,7 +64,7 @@ async function search({ type, content, distance }) {
   }
 }
 
-async function init() {
+async function init () {
   const options = loadOptions()
   const save = Object.assign(defaultOptions, options)
   await saveOptions(save)

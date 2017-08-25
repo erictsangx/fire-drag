@@ -19,7 +19,6 @@
     "scripts": [
       "core/constants.js",
       "core/lang.js",
-      "background_scripts/constants.js",
       "background_scripts/index.js"
     ]
   },

@@ -108,6 +108,6 @@ function init() {
   }
 }
 
-init()
+init().then()
 
 DEBUG('content end')

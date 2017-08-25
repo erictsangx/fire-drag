@@ -4,8 +4,21 @@
 
 const DEBUG_ENV = true
 
-function DEBUG(...args) {
+function DEBUG (...args) {
   if (DEBUG_ENV) {
     console.info(...args)
   }
+}
+
+async function saveOptions (options) {
+  await browser.storage.local.set({options})
+}
+
+async function loadOptions () {
+  const result = await browser.storage.local.get('options')
+  if (result && result.options) {
+    return result.options
+  }
+  await saveOptions(defaultOptions)
+  return defaultOptions
 }
