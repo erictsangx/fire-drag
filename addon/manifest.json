@@ -31,7 +31,8 @@
         "core/constants.js",
         "core/lang.js",
         "content_scripts/index.js"
-      ]
+      ],
+      "run_at": "document_end"
     }
   ],
   "options_ui": {
