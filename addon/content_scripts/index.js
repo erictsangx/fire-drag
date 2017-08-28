@@ -83,7 +83,7 @@ function init () {
       const parent = event.target.parentNode
 
       if (parent && parent.nodeName === 'A') {
-        emitObj.parent = parent.getAttribute('href')
+        emitObj.parent = parent.href
       }
 
       //ignore text not selected by users
