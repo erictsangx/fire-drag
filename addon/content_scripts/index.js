@@ -5,14 +5,13 @@
 DEBUG('content start')
 
 //@see https://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url
-function isURL(url) {
+function isURL (url) {
   const strRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi
   const re = new RegExp(strRegex)
   return re.test(url)
 }
 
-
-function parseLink(text) {
+function parseLink (text) {
   const httpText = `http://${text}`
   const httpsText = `https://${text}`
   if (isURL(text)) {
@@ -36,7 +35,7 @@ function parseLink(text) {
   }
 }
 
-function parseDataTransfer(data) {
+function parseDataTransfer (data) {
   const array = [...data.types]
   if (array.includes('application/x-moz-nativeimage')) {
     return {
@@ -58,17 +57,20 @@ function parseDataTransfer(data) {
   }
 }
 
-
-function init() {
+function init () {
   const start = {}
   let distance = 0
   let preventDrop = false
+  let selectedText = ''
 
   document.addEventListener('dragstart', (event) => {
     start.x = event.clientX
     start.y = event.clientY
   }, false)
 
+  document.onmouseup = () => {
+    selectedText = window.getSelection().toString()
+  }
 
   document.addEventListener('dragend', (event) => {
     if (!preventDrop) {
@@ -76,9 +78,21 @@ function init() {
 
       const payload = parseDataTransfer(event.dataTransfer)
 
-      const emitObj = Object.assign(payload, { distance })
+      const emitObj = {...payload, distance}
 
-      DEBUG('emitObj', emitObj)
+      const parent = event.target.parentNode
+
+      if (parent && parent.nodeName === 'A') {
+        emitObj.parent = parent.getAttribute('href')
+      }
+
+      //ignore text not selected by users
+      if (payload.type === TEXT_TYPE) {
+        if (payload.content !== selectedText && emitObj.parent) {
+          emitObj.content = emitObj.parent
+          emitObj.type = LINK_TYPE
+        }
+      }
 
       if (payload.type === TEXT_TYPE) {
         const parsed = parseLink(payload.content)
@@ -87,6 +101,9 @@ function init() {
           emitObj.type = LINK_TYPE
         }
       }
+
+      DEBUG('emitObj', emitObj)
+
       browser.runtime.sendMessage(emitObj)
     }
   })
@@ -108,6 +125,6 @@ function init() {
   }
 }
 
-init().then()
+init()
 
 DEBUG('content end')

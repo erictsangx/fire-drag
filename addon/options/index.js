@@ -5,16 +5,16 @@ Vue.component('radio-option', {
       <div>
         <label :for="labelA">
             <input :id="labelA" type="radio" :name="label" value="true" v-model="tmp" />
-            Foreground
+            {{left}}
         </label>
         <label :for="labelB">
             <input :id="labelB" type="radio" :name="label" value="false" v-model="tmp"/>
-            Background
+            {{right}}
         </label>
       </div>
     </div>
   `,
-  props: ['label', 'active'],
+  props: ['label', 'left', 'right', 'active'],
   computed: {
     labelA: function () {
       return this.label.toLowerCase().replace(/ /g, '-') + '-a'
@@ -99,9 +99,11 @@ async function init () {
     el: '#app',
     template: `
 <div>
-  <radio-option label="Search texts in" :active="textActive" @change="setTextActive"></radio-option>
-  <radio-option label="Open links in" :active="linkActive" @change="setLinkActive"></radio-option>
-  <radio-option label="Open images in" :active="imageActive" @change="setImageActive"></radio-option>
+  <radio-option label="Search texts in" left="Foreground" right="Background" :active="textActive" @change="setTextActive"></radio-option>
+  <radio-option label="Open links in" left="Foreground" right="Background" :active="linkActive" @change="setLinkActive"></radio-option>
+  <radio-option label="Open images in" left="Foreground" right="Background" :active="imageActive" @change="setImageActive"></radio-option>
+  <radio-option label="Ignore selected text if dragging a hyperlink" left="On" right="Off" :active="overrideSelectedText" @change="setOverride"></radio-option>
+  
   <number-option label="Ignore if the distance of dragging is less than" :value="threshold" @change="setThreshold"></number-option>
 
   <dropdown-option
@@ -123,10 +125,10 @@ async function init () {
     data: {...opts},
     computed: {
       engineList: function () {
-        return engineList
+        return ENGINE_LIST
       },
       tabPositions: function () {
-        return tabPositions
+        return TAB_POSITIONS
       }
     },
     methods: {
@@ -140,6 +142,10 @@ async function init () {
       },
       setImageActive: async function ({active}) {
         this.imageActive = active
+        await saveOptions({...this.$data})
+      },
+      setOverride: async function ({active}) {
+        this.overrideSelectedText = active
         await saveOptions({...this.$data})
       },
       setThreshold: async function ({value}) {

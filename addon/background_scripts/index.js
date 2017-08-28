@@ -25,18 +25,26 @@ async function createTab (props) {
     position = 0
   }
 
-  await browser.tabs.create({...props, index: position})
+  await browser.tabs.create(Object.assign(props, {index: position}))
 }
 
 function submitSearch (value, query) {
-  const engine = engineList.find((item) => {
+  const engine = ENGINE_LIST.find((item) => {
     return item.value === value
   })
   return encodeURI(engine.url.replace('@@', query))
 }
 
-async function search ({type, content, distance}) {
+async function search ({type, content, distance, parent}) {
   const options = await loadOptions()
+
+  if (options.overrideSelectedText && parent) {
+    await createTab({
+      url: parent,
+      active: options.linkActive
+    })
+    return
+  }
 
   if (distance >= options.threshold) {
     switch (type) {
@@ -65,12 +73,12 @@ async function search ({type, content, distance}) {
 }
 
 async function init () {
-  const options = loadOptions()
-  const save = Object.assign(defaultOptions, options)
+  const options = await loadOptions()
+  const save = Object.assign(DEFAULT_OPTIONS, options)
   await saveOptions(save)
 
-  browser.runtime.onMessage.addListener(async (message) => {
-    await search(message)
+  browser.runtime.onMessage.addListener((message) => {
+    search(message).then()
   })
 }
 

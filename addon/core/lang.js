@@ -19,6 +19,6 @@ async function loadOptions () {
   if (result && result.options) {
     return result.options
   }
-  await saveOptions(defaultOptions)
-  return defaultOptions
+  await saveOptions(DEFAULT_OPTIONS)
+  return DEFAULT_OPTIONS
 }
