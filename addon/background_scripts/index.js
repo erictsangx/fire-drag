@@ -15,6 +15,9 @@ async function createTab (props) {
   if (options.defaultPosition === LEFT) {
     position = tabs[0].index
   }
+  if (options.defaultPosition === RIGHT) {
+    props.openerTabId = tabs[0].id
+  }
   if (options.defaultPosition === FIRST) {
     position = 0
   }
