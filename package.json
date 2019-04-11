@@ -10,15 +10,15 @@
     "zip": "cp ./node_modules/vue/dist/vue.min.js ./addon/options/vue.js && zip -r -FS fire-drag.zip addon/*"
   },
   "devDependencies": {
-    "eslint": "^4.5.0",
+    "eslint": "^4.19.1",
     "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.1.1",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "web-ext": "^2.0.0"
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "web-ext": "^3.0.0"
   },
   "dependencies": {
-    "vue": "^2.4.2"
+    "vue": "^2.6.10"
   }
 }
