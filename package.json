@@ -7,7 +7,8 @@
   "license": "GNU GPL v3.0",
   "scripts": {
     "postinstall": "cp ./node_modules/vue/dist/vue.js ./addon/options/vue.js",
-    "zip": "cp ./node_modules/vue/dist/vue.min.js ./addon/options/vue.js && zip -r -FS fire-drag.zip addon/*"
+    "build": "cp ./node_modules/vue/dist/vue.min.js ./addon/options/vue.js && node node_modules/.bin/web-ext build --source-dir=addon",
+    "start": "node node_modules/.bin/web-ext run --source-dir=addon"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
