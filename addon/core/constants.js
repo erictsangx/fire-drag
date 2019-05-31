@@ -47,6 +47,11 @@ const ENGINE_LIST = [
     label: 'Yandex',
     value: 'Yandex',
     url: 'https://yandex.ru/yandsearch?text=@@'
+  },
+  {
+    label: 'Baidu',
+    value: 'Baidu',
+    url: 'https://www.baidu.com/s?wd=@@'
   }
 ]
 
