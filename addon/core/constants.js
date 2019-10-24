@@ -14,6 +14,11 @@ const ENGINE_LIST = [
     url: 'https://www.google.com/search?q=@@'
   },
   {
+    label: 'Google Feeling Lucky',
+    value: 'Google_feeling_lucky',
+    url: 'https://www.google.com/search?q=@@&btnI=I%27m+Feeling+Lucky'
+  },
+  {
     label: 'Yahoo',
     value: 'Yahoo',
     url: 'https://search.yahoo.com/search?p=@@&fr=sfp&fr2=sb-top-search&iscqry='
@@ -32,6 +37,11 @@ const ENGINE_LIST = [
     label: 'DuckDuckGo',
     value: 'DuckDuckGo',
     url: 'https://duckduckgo.com/?q=@@'
+  },
+  {
+    label: 'DuckDuckGo Feeling Ducky',
+    value: 'DuckDuckGo_feeling_ducky',
+    url: 'https://duckduckgo.com/?q=! @@'
   },
   {
     label: 'Twitter',
