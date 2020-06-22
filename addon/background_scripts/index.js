@@ -36,16 +36,8 @@ function submitSearch (value, query) {
 }
 
 // @params emitObj
-async function search ({type, content, parent}) {
+async function search ({type, content}) {
   const options = await loadOptions()
-
-  if (options.overrideSelectedText && parent) {
-    await createTab({
-      url: parent,
-      active: options.linkActive
-    })
-    return
-  }
 
   switch (type) {
     case IMAGE_TYPE:

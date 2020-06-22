@@ -105,8 +105,6 @@ async function init () {
                           @change="setLinkActive"></radio-option>
             <radio-option label="Open images in" left="Foreground" right="Background" :active="imageActive"
                           @change="setImageActive"></radio-option>
-            <radio-option label="Ignore selected text if dragging a hyperlink" left="On" right="Off"
-                          :active="overrideSelectedText" @change="setOverride"></radio-option>
 
             <dropdown-option
                     label="Select Search Engine"
@@ -144,10 +142,6 @@ async function init () {
       },
       setImageActive: async function ({active}) {
         this.imageActive = active
-        await saveOptions({...this.$data})
-      },
-      setOverride: async function ({active}) {
-        this.overrideSelectedText = active
         await saveOptions({...this.$data})
       },
       setSearch: async function ({value}) {

@@ -79,20 +79,6 @@ function init () {
 
       const emitObj = {...payload}
 
-      const parent = event.target.parentNode
-
-      if (parent && parent.nodeName === 'A') {
-        emitObj.parent = parent.href
-      }
-
-      //ignore text not selected by users
-      if (payload.type === TEXT_TYPE) {
-        if (payload.content !== selectedText && emitObj.parent) {
-          emitObj.content = emitObj.parent
-          emitObj.type = LINK_TYPE
-        }
-      }
-
       if (payload.type === TEXT_TYPE) {
         const parsed = parseLink(payload.content)
         if (parsed.isLink) {
