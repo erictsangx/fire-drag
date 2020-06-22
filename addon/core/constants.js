@@ -66,7 +66,6 @@ const DEFAULT_OPTIONS = {
   textActive: true,
   linkActive: false,
   imageActive: false,
-  threshold: 100,
   overrideSelectedText: false,
   defaultSearch: ENGINE_LIST[0].label,
   defaultPosition: TAB_POSITIONS[0].value

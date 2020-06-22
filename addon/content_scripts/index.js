@@ -59,7 +59,6 @@ function parseDataTransfer (data) {
 
 function init () {
   const start = {}
-  let distance = 0
   let preventDrop = false
   let selectedText = ''
 
@@ -78,7 +77,7 @@ function init () {
 
       const payload = parseDataTransfer(event.dataTransfer)
 
-      const emitObj = {...payload, distance}
+      const emitObj = {...payload}
 
       const parent = event.target.parentNode
 
@@ -119,7 +118,6 @@ function init () {
     if (IGNORED_TAG.includes(event.target.nodeName)) {
       preventDrop = true
     } else {
-      distance = Math.hypot(event.clientX - start.x, event.clientY - start.y)
       preventDrop = false
     }
   }
