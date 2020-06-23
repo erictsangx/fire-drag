@@ -1,8 +1,8 @@
 Vue.component('radio-option', {
   template: `
-      <div class="row">
-          <span class="col-2">{{label}}</span>
-          <div class="">
+      <div>
+          <span>{{label}}</span>
+          <div>
               <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" :id="labelA" v-model="tmp"
                          v-bind:value="true">

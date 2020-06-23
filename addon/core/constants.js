@@ -67,5 +67,6 @@ const DEFAULT_OPTIONS = {
   linkActive: false,
   imageActive: false,
   searchEngine: 'https://www.google.com/search?q=@@',
-  defaultPosition: TAB_POSITIONS[0].value,
+  position: TAB_POSITIONS[0].value,
+  whitelist: '*.mozilla.org' +'\n' + 'example.com'
 }

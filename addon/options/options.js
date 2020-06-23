@@ -1,91 +1,3 @@
-//
-// function isNumber (obj) {
-//   return !isNaN(parseFloat(obj))
-// }
-//
-// function parseNumber (value) {
-//   return isNumber(value) && value >= 1 ? value : 1
-// }
-//
-// Vue.component('number-option', {
-//   template: `
-//       <div class="row option">
-//           <span class="label">{{label}}</span>
-//           <div>
-//               <input type="number" min="0" v-model="tmp"/>
-//           </div>
-//       </div>
-//   `,
-//   props: ['label', 'value'],
-//   computed: {
-//     tmp: {
-//       get: function () {
-//         return this.value
-//       },
-//       set: function (rawValue) {
-//         const newValue = parseNumber(rawValue)
-//         this.$emit('change', {value: newValue})
-//       }
-//     }
-//   }
-// })
-//
-// Vue.component('dropdown-option', {
-//   template: `
-//       <div class="row option">
-//           <span class="label">{{label}}</span>
-//           <div>
-//               <select v-model="selected">
-//                   <option v-for="option in options" v-bind:value="option.value">
-//                       {{ option.label }}
-//                   </option>
-//               </select>
-//           </div>
-//       </div>
-//   `,
-//   props: ['label', 'options', 'default'],
-//   computed: {
-//     selected: {
-//       get: function () {
-//         return this.default
-//       },
-//       set: function (newValue) {
-//         this.$emit('change', {value: newValue})
-//       }
-//     }
-//   }
-// })
-//
-// Vue.component('whitelist', {
-//   template: `
-//       <div>
-//           <span class="label">Disable fire-drag on these websites(separated by new lines)</span>
-//           <textarea v-model=""></textarea>
-//       </div>
-//   `,
-//   props: ['label', 'whitelist'],
-//   methods: {
-//     keyupHandler: function () {
-//       this.$emit('change')
-//     },
-//     remove: function (index) {
-//       DEBUG('remove', index)
-//     }
-//   },
-//   computed: {
-//     // whitelist: {
-//     //   get: function () {
-//     //     return this.options
-//     //   },
-//     //   set: function (newValue) {
-//     //     DEBUG('set', newValue)
-//     //     this.$emit('change', {value: newValue})
-//     //   }
-//     // }
-//   }
-// })
-//
-
 async function init () {
   // const opts = await loadOptions()
   // DEBUG('opts', opts)
@@ -108,63 +20,70 @@ async function init () {
     return value
   }
 
-  const options = {}
+  function checkPosition (value, def) {
+    const exist = TAB_POSITIONS.find((ele) => {
+      return ele.value === value
+    })
+    return exist ? value : def
+  }
+
+  const options = {
+    textActive: false,
+    linkActive: true,
+    imageActive: false,
+    searchEngine: 'https://twitter.com/search?q=@@&src=typd',
+    position: TAB_POSITIONS[2].value,
+    whitelist: 'example.com' + '\n' + '*.mozilla.org'
+  }
 
   const app = new Vue({
     el: '#app',
     template: `
         <div class="container-fluid">
-            <form>
-                <div class="form-group">
+            <form class="list-group" @submit="saveForm">
+                <div class="list-group-item">
                     <label for="searchEngine">Search Engine URL(e.g. https://www.google.com/search?q=@@ ->
                         https://www.google.com/search?q=SelectedText)</label>
                     <input type="text" class="form-control" id="searchEngine" v-model="searchEngine"
                            placeholder="https://www.google.com/search?q=@@">
                 </div>
-                <radio-option label="Search texts in" :active.sync="textActive"></radio-option>
-                <button type="submit" class="btn btn-default">Submit</button>
-                {{engineList}}
+                <radio-option class="list-group-item" label="Search texts in"
+                              :active.sync="textActive"></radio-option>
+                <radio-option class="list-group-item" label="Open links in"
+                              :active.sync="linkActive"></radio-option>
+                <radio-option class="list-group-item" label="Open images in"
+                              :active.sync="imageActive"></radio-option>
+                <dropdown-option class="list-group-item" label="New Tab Position"
+                                 :options="tabPositions"
+                                 :selected.sync="position"></dropdown-option>
+
+                <div class="list-group-item">
+                    <label for="whitelist">Disable fire-drag on these websites(separated by new lines)</label>
+                    <textarea class="form-control" id="whitelist" rows="5" v-model="whitelist"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success">Save</button>
             </form>
         </div>
     `,
     data: {
-      searchEngine: checkString(options, DEFAULT_OPTIONS.searchEngine),
-      textActive: checkBoolean(options, DEFAULT_OPTIONS.textActive),
-      linkActive: checkBoolean(options, DEFAULT_OPTIONS.linkActive),
-      imageActive: checkBoolean(options, DEFAULT_OPTIONS.imageActive)
+      searchEngine: checkString(options.searchEngine, DEFAULT_OPTIONS.searchEngine),
+      textActive: checkBoolean(options.textActive, DEFAULT_OPTIONS.textActive),
+      linkActive: checkBoolean(options.linkActive, DEFAULT_OPTIONS.linkActive),
+      imageActive: checkBoolean(options.imageActive, DEFAULT_OPTIONS.imageActive),
+      position: checkPosition(options.position, DEFAULT_OPTIONS.position),
+      whitelist: checkString(options.whitelist, DEFAULT_OPTIONS.whitelist)
     },
     computed: {
-      engineList: function () {
-        setInterval(() => {
-          DEBUG('textActive', this.textActive)
-        }, 2000)
-        return ENGINE_LIST
-      },
       tabPositions: function () {
-        DEBUG('this.data', this.$data)
         return TAB_POSITIONS
       }
     },
     methods: {
-      setTextActive: function ({active}) {
-        // this.textActive = active
-        DEBUG('textActive', this.textActive)
-      },
-      setLinkActive: function ({active}) {
-        this.linkActive = active
-      },
-      setImageActive: function ({active}) {
-        this.imageActive = active
-      },
-      setSearch: function ({value}) {
-        this.defaultSearch = value
-      },
-      setPosition: function ({value}) {
-        this.defaultPosition = value
-      },
-      setWhitelist: function () {
-        DEBUG('setWhiteList')
-        // await saveOptions({...this.$data})
+      saveForm: function (e) {
+        const newOptions = Object.assign({}, this.$data)
+        DEBUG('save', newOptions)
+        e.preventDefault()
       }
     }
   })
