@@ -264,6 +264,6 @@ typings/
 
 .idea
 fire-drag.iml
-addon/options/vue.js
+addon/options/libs
 sign.sh
 web-ext-artifacts/

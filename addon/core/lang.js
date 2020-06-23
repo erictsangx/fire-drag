@@ -10,15 +10,22 @@ function DEBUG (...args) {
   }
 }
 
+function isEmpty (obj) {
+  return obj === null || obj === undefined || Object.keys(obj).length === 0
+}
+
 async function saveOptions (options) {
-  await browser.storage.local.set({options})
+  DEBUG('saveOptions', options)
+  await browser.storage.local.set({options110: options})
 }
 
 async function loadOptions () {
-  const result = await browser.storage.local.get('options')
-  if (result && result.options) {
-    return result.options
+  let storage = await browser.storage.local.get('options110').options110
+  DEBUG('load storage', storage)
+  if (isEmpty(storage)) {
+    await saveOptions(DEFAULT_OPTIONS)
+    return DEFAULT_OPTIONS
+  } else {
+    return storage
   }
-  await saveOptions(DEFAULT_OPTIONS)
-  return DEFAULT_OPTIONS
 }

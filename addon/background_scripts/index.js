@@ -71,6 +71,12 @@ async function init () {
   browser.runtime.onMessage.addListener((message) => {
     search(message).then()
   })
+
+}
+
+
+function foo() {
+  console.log("I'm defined in background.js");
 }
 
 init().then()

@@ -66,6 +66,6 @@ const DEFAULT_OPTIONS = {
   textActive: true,
   linkActive: false,
   imageActive: false,
-  defaultSearch: ENGINE_LIST[0].label,
-  defaultPosition: TAB_POSITIONS[0].value
+  searchEngine: 'https://www.google.com/search?q=@@',
+  defaultPosition: TAB_POSITIONS[0].value,
 }

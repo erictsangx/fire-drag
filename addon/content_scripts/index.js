@@ -4,6 +4,7 @@
 
 DEBUG('content start')
 
+
 //@see https://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url
 function isURL (url) {
   const strRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi
@@ -107,6 +108,8 @@ function init () {
       preventDrop = false
     }
   }
+
+  DEBUG('browserA', browser.extension.getViews)
 }
 
 init()
