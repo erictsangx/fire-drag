@@ -1,10 +1,13 @@
 async function init () {
-  // const opts = await loadOptions()
-  // DEBUG('opts', opts)
-
-  function isEmpty (value) {
-    return value === null || value === undefined
-  }
+  // const options = {
+  //   textActive: false,
+  //   linkActive: true,
+  //   imageActive: false,
+  //   searchEngine: 'https://twitter.com/search?q=@@&src=typd',
+  //   position: TAB_POSITIONS[2].value,
+  //   whitelist: 'example.com' + '\n' + '*.mozilla.org'
+  // }
+  const options = await loadOptions()
 
   function checkBoolean (value, def) {
     if (isEmpty(value) || typeof value !== 'boolean') {
@@ -25,15 +28,6 @@ async function init () {
       return ele.value === value
     })
     return exist ? value : def
-  }
-
-  const options = {
-    textActive: false,
-    linkActive: true,
-    imageActive: false,
-    searchEngine: 'https://twitter.com/search?q=@@&src=typd',
-    position: TAB_POSITIONS[2].value,
-    whitelist: 'example.com' + '\n' + '*.mozilla.org'
   }
 
   const app = new Vue({
@@ -80,10 +74,10 @@ async function init () {
       }
     },
     methods: {
-      saveForm: function (e) {
-        const newOptions = Object.assign({}, this.$data)
-        DEBUG('save', newOptions)
+      saveForm: async function (e) {
         e.preventDefault()
+        const newOptions = Object.assign({}, this.$data)
+        await saveOptions(newOptions)
       }
     }
   })
