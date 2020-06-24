@@ -1,14 +1,14 @@
 {
   "title": "Fire Drag",
   "name": "firedrag",
-  "version": "2.1.0",
+  "version": "1.1.0",
   "description": "Drag texts and links that is also fully compatible with multiprocess Firefox",
   "author": "erictsangx@gmail.com",
   "license": "GNU GPL v3.0",
   "scripts": {
     "postinstall": "./copy.sh",
-    "build": "cp ./node_modules/vue/dist/vue.min.js ./addon/options/vue.js && node node_modules/.bin/web-ext build --source-dir=addon",
-    "start": "node node_modules/.bin/web-ext run --source-dir=addon --browser-console -u example.com"
+    "build": "./copy.sh && node node_modules/.bin/web-ext build --source-dir=addon",
+    "start": "node node_modules/.bin/web-ext run --source-dir=addon --browser-console -u en.wikipedia.org/wiki/Wiki"
   },
   "devDependencies": {
     "eslint": "^4.19.1",

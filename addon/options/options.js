@@ -38,7 +38,7 @@ async function init () {
                 <div class="list-group-item">
                     <label for="searchEngine">Search Engine URL(e.g. https://www.google.com/search?q=@@ ->
                         https://www.google.com/search?q=SelectedText)</label>
-                    <input type="text" class="form-control" id="searchEngine" v-model="searchEngine"
+                    <input type="text" class="form-control" id="searchEngine" v-model.trim="searchEngine"
                            placeholder="https://www.google.com/search?q=@@">
                 </div>
                 <radio-option class="list-group-item" label="Search texts in"
@@ -52,8 +52,9 @@ async function init () {
                                  :selected.sync="position"></dropdown-option>
 
                 <div class="list-group-item">
-                    <label for="whitelist">Disable fire-drag on these websites(separated by new lines)</label>
-                    <textarea class="form-control" id="whitelist" rows="5" v-model="whitelist"></textarea>
+                    <label for="whitelist">Disable fire-drag:(URL separated by new lines, support subdomain using
+                        *.)</label>
+                    <textarea class="form-control" id="whitelist" rows="5" v-model.trim="whitelist"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-success">Save</button>
@@ -76,6 +77,7 @@ async function init () {
     methods: {
       saveForm: async function (e) {
         e.preventDefault()
+        this.whitelist = this.whitelist.replace(/\n+$/, '')
         const newOptions = Object.assign({}, this.$data)
         await saveOptions(newOptions)
       }

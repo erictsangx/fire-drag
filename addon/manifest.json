@@ -2,24 +2,24 @@
   "description": "Drag texts and links that is also fully compatible with multiprocess Firefox",
   "manifest_version": 2,
   "name": "Fire Drag",
-  "version": "2.1.0",
+  "version": "1.1.0",
   "homepage_url": "https://github.com/erictsangx/fire-drag",
   "author": "erictsangx@gmail.com",
   "applications": {
     "gecko": {
-      "id": "erictsangx@gmail.com"
+      "id": "@firedrag"
     }
   },
   "icons": {
     "48": "icons/drag-48.png",
     "96": "icons/drag-96.png"
   },
-  "content_security_policy": "default-src moz-extension://erictsangx@gmail.com 'self' 'unsafe-eval';",
+  "content_security_policy": "default-src 'self' 'unsafe-eval';",
   "background": {
     "scripts": [
       "core/constants.js",
-      "core/lang.js",
-      "background_scripts/index.js"
+      "core/extension.js",
+      "background_scripts/background.js"
     ]
   },
   "content_scripts": [
@@ -29,8 +29,8 @@
       ],
       "js": [
         "core/constants.js",
-        "core/lang.js",
-        "content_scripts/index.js"
+        "core/extension.js",
+        "content_scripts/injected.js"
       ],
       "run_at": "document_end"
     }

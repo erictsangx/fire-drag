@@ -12,13 +12,13 @@ async function createTab (props) {
   const tabs = await browser.tabs.query({currentWindow: true, active: true})
 
   let position = tabs[0].index + 1
-  if (options.defaultPosition === LEFT) {
+  if (options.position === LEFT) {
     position = tabs[0].index
   }
-  if (options.defaultPosition === FIRST) {
+  if (options.position === FIRST) {
     position = 0
   }
-  if (options.defaultPosition === LAST) {
+  if (options.position === LAST) {
     position = allTabs.length
   }
   if (position < 0) {
@@ -28,11 +28,8 @@ async function createTab (props) {
   await browser.tabs.create(Object.assign(props, {index: position}))
 }
 
-function submitSearch (value, query) {
-  const engine = ENGINE_LIST.find((item) => {
-    return item.value === value
-  })
-  return encodeURI(engine.url.replace('@@', query))
+function submitSearch (url, query) {
+  return encodeURI(url.replace('@@', query))
 }
 
 // @params emitObj
@@ -54,7 +51,7 @@ async function search ({type, content}) {
       break
     case TEXT_TYPE:
       await createTab({
-        url: submitSearch(options.defaultSearch, content),
+        url: submitSearch(options.searchEngine, content),
         active: options.textActive
       })
       break
@@ -63,20 +60,30 @@ async function search ({type, content}) {
   }
 }
 
+function onError (error) {
+  console.error(`Error: ${error}`)
+}
+
+function sendMessageToTabs (tabs) {
+  for (let tab of tabs) {
+    console.log('tab', tab)
+    browser.tabs.sendMessage(
+      tab.id,
+      {greeting: 'Hi from background script'}
+    ).then(response => {
+      console.log('Message from the content script:')
+      console.log(response.response)
+    }).catch(onError)
+  }
+}
+
 async function init () {
-  const options = await loadOptions()
-  const save = Object.assign(DEFAULT_OPTIONS, options)
-  await saveOptions(save)
+  let options = await loadOptions()
 
   browser.runtime.onMessage.addListener((message) => {
     search(message).then()
   })
 
-}
-
-
-function foo() {
-  console.log("I'm defined in background.js");
 }
 
 init().then()

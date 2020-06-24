@@ -7,49 +7,6 @@ const IMAGE_TYPE = 'IMAGE_TYPE'
 const TEXT_TYPE = 'TEXT_TYPE'
 const LINK_TYPE = 'LINK_TYPE'
 
-const ENGINE_LIST = [
-  {
-    label: 'Google',
-    value: 'Google',
-    url: 'https://www.google.com/search?q=@@'
-  },
-  {
-    label: 'Yahoo',
-    value: 'Yahoo',
-    url: 'https://search.yahoo.com/search?p=@@&fr=sfp&fr2=sb-top-search&iscqry='
-  },
-  {
-    label: 'Bing',
-    value: 'Bing',
-    url: 'https://www.bing.com/search?q=@@'
-  },
-  {
-    label: 'Amazon',
-    value: 'Amazon',
-    url: 'https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=@@'
-  },
-  {
-    label: 'DuckDuckGo',
-    value: 'DuckDuckGo',
-    url: 'https://duckduckgo.com/?q=@@'
-  },
-  {
-    label: 'Twitter',
-    value: 'Twitter',
-    url: 'https://twitter.com/search?q=@@&src=typd'
-  },
-  {
-    label: 'Wikipedia(en)',
-    value: 'Wikipedia(en)',
-    url: 'https://en.wikipedia.org/w/index.php?search=@@&title=Special:Search&go=Go'
-  },
-  {
-    label: 'Yandex',
-    value: 'Yandex',
-    url: 'https://yandex.ru/yandsearch?text=@@'
-  }
-]
-
 const RIGHT = 'RIGHT'
 const LEFT = 'LEFT'
 const FIRST = 'FIRST'
@@ -68,5 +25,5 @@ const DEFAULT_OPTIONS = {
   imageActive: false,
   searchEngine: 'https://www.google.com/search?q=@@',
   position: TAB_POSITIONS[0].value,
-  whitelist: '*.mozilla.org' +'\n' + 'example.com'
+  whitelist: '*.mozilla.org' + '\n' + 'example.com'
 }

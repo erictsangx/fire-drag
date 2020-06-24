@@ -39,7 +39,6 @@
     "browser": true,
     "Vue": true,
     "DEBUG": true,
-    "ENGINE_LIST": true,
     "DEFAULT_OPTIONS": true,
     "TAB_POSITIONS": true,
     "saveOptions": true,

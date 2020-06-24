@@ -4,7 +4,6 @@
 
 DEBUG('content start')
 
-
 //@see https://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url
 function isURL (url) {
   const strRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi
@@ -58,7 +57,29 @@ function parseDataTransfer (data) {
   }
 }
 
+async function checkWhitelist () {
+  const options = await loadOptions()
+  const whitelist = options.whitelist.split('\n')
+  const hostname = window.location.hostname
+  const domain = hostname.match(/[^\.]*\.[^.]*$/)[0]
+  const result = whitelist.find(function (item) {
+    const test = item.trim()
+    if (test === hostname) {
+      return true
+    }
+    if (test.includes('*.')) {
+      const wildcard = test.replace('*.', '')
+      return wildcard === domain
+    }
+    return false
+  })
+  if (isEmpty(result)) {
+    init()
+  }
+}
+
 function init () {
+
   const start = {}
   let preventDrop = false
   let selectedText = ''
@@ -108,10 +129,8 @@ function init () {
       preventDrop = false
     }
   }
-
-  DEBUG('browserA', browser.extension.getViews)
 }
 
-init()
+checkWhitelist()
 
 DEBUG('content end')

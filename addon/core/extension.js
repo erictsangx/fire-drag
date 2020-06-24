@@ -2,7 +2,7 @@
  * Created by erictsangx on 21/12/2016.
  */
 
-const DEBUG_ENV = true
+const DEBUG_ENV = false
 
 function DEBUG (...args) {
   if (DEBUG_ENV) {
@@ -16,15 +16,15 @@ function isEmpty (obj) {
 
 async function saveOptions (options) {
   DEBUG('saveOptions', options)
-  await browser.storage.local.set({options210: options})
+  await browser.storage.local.set({options110: options})
 }
 
 async function loadOptions () {
-  let storage = await browser.storage.local.get('options210')
+  const storage = await browser.storage.local.get('options110')
   DEBUG('load storage', storage)
-  if (isEmpty(storage)) {
-    return {}
+  if (isEmpty(storage) || Object.keys(storage).length === 0) {
+    return DEFAULT_OPTIONS
   } else {
-    return storage.options210
+    return storage.options110
   }
 }
