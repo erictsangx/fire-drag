@@ -10,7 +10,11 @@ This simple add-on allows users to drag:
 <li>disable fire-drag on some websites</li>
 </ul>
 
-PS: NO RESTART but need to refresh webpages.
+PS: NO RESTART but need to refresh the web pages.
+
+![Kiku](screenshots/show.png)
+![Kiku](screenshots/preference.png)
+
 
 *source code*: <a href="https://github.com/erictsangx/fire-drag">https://github.com/erictsangx/fire-drag</a>
 
