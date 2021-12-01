@@ -16,9 +16,7 @@
   },
   "background": {
     "scripts": [
-      "core/constants.js",
-      "core/extension.js",
-      "background_scripts/background.js"
+      "rollup/background_scripts.js"
     ]
   },
   "content_scripts": [
@@ -27,9 +25,7 @@
         "<all_urls>"
       ],
       "js": [
-        "core/constants.js",
-        "core/extension.js",
-        "content_scripts/injected.js"
+        "rollup/content_scripts.js"
       ],
       "run_at": "document_end"
     }

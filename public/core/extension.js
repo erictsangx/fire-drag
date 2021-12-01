@@ -2,29 +2,31 @@
  * Created by erictsangx on 21/12/2016.
  */
 
-const DEBUG_ENV = false
+import { DEFAULT_OPTIONS } from './constants'
 
-function DEBUG (...args) {
+const DEBUG_ENV = true
+
+export function DEBUG(...args) {
   if (DEBUG_ENV) {
     console.info(...args)
   }
 }
 
-function isEmpty (obj) {
+export function isEmpty(obj) {
   return obj === null || obj === undefined
 }
 
-async function saveOptions (options) {
+export async function saveOptions(options) {
   DEBUG('saveOptions', options)
-  await browser.storage.local.set({options110: options})
+  await browser.storage.local.set({ options })
 }
 
-async function loadOptions () {
-  const storage = await browser.storage.local.get('options110')
+export async function loadOptions() {
+  const storage = await browser.storage.local.get('options')
   DEBUG('load storage', storage)
   if (isEmpty(storage) || Object.keys(storage).length === 0) {
     return DEFAULT_OPTIONS
   } else {
-    return storage.options110
+    return storage.options
   }
 }

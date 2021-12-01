@@ -1,0 +1,12 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "globals": {
+    "browser": true
+  },
+  "extends": [
+    "react-app",
+    "react-app/jest"
+  ]
+}
