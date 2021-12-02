@@ -1,8 +1,8 @@
 {
-  "description": "Drag texts and links that is also fully compatible with multiprocess Firefox",
+  "description": "Provide drag-and-drop utilities for texts and links",
   "manifest_version": 2,
-  "name": "Fire Drag",
-  "version": "1.1.0",
+  "name": "fire-drag",
+  "version": "2.0.4",
   "homepage_url": "https://github.com/erictsangx/fire-drag",
   "author": "erictsangx@gmail.com",
   "applications": {
@@ -14,12 +14,9 @@
     "48": "icons/drag-48.png",
     "96": "icons/drag-96.png"
   },
-  "content_security_policy": "default-src 'self' 'unsafe-eval';",
   "background": {
     "scripts": [
-      "core/constants.js",
-      "core/extension.js",
-      "background_scripts/background.js"
+      "rollup/background_scripts.js"
     ]
   },
   "content_scripts": [
@@ -28,15 +25,13 @@
         "<all_urls>"
       ],
       "js": [
-        "core/constants.js",
-        "core/extension.js",
-        "content_scripts/injected.js"
+        "rollup/content_scripts.js"
       ],
       "run_at": "document_end"
     }
   ],
   "options_ui": {
-    "page": "options/options.html",
+    "page": "index.html",
     "open_in_tab": true
   },
   "permissions": [

@@ -1,55 +1,23 @@
 {
-  "extends": "standard",
-  "env": {
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "globals": {
     "browser": true
   },
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "plugin:prettier/recommended"
+  ],
   "rules": {
-    "semi": [
+    "prettier/prettier": [
       "error",
-      "never"
-    ],
-    "no-trailing-spaces": [
-      2,
       {
-        "skipBlankLines": true
+        "singleQuote": true,
+        "semi": false,
+        "trailingComma": "all"
       }
-    ],
-    "import/default": 0,
-    "import/no-duplicates": 0,
-    "import/named": 0,
-    "import/namespace": 0,
-    "import/no-unresolved": 0,
-    "import/no-named-as-default": 2,
-    "comma-dangle": 0,
-    // not sure why airbnb turned this on. gross!
-    "indent": [
-      2,
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
-    "no-console": 0,
-    "no-alert": 0,
-    "no-unused-vars": 1,
-    "spaced-comment": 0
-  },
-  "plugins": [],
-  "globals": {
-    "browser": true,
-    "Vue": true,
-    "DEBUG": true,
-    "DEFAULT_OPTIONS": true,
-    "TAB_POSITIONS": true,
-    "saveOptions": true,
-    "loadOptions": true,
-    "IGNORED_TAG": true,
-    "IMAGE_TYPE": true,
-    "TEXT_TYPE": true,
-    "LINK_TYPE": true,
-    "LEFT": true,
-    "RIGHT": true,
-    "FIRST": true,
-    "LAST": true
+    ]
   }
 }

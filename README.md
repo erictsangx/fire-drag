@@ -1,6 +1,3 @@
-Since many drag&drop add-on are outdated or does not support
-e10s(multi-process: <a href="https://wiki.mozilla.org/Electrolysis">https://wiki.mozilla.org/Electrolysis</a>)
-
 This simple add-on allows users to drag:
 <ul>
 <li>texts: search in foreground/background tabs</li>
@@ -10,11 +7,7 @@ This simple add-on allows users to drag:
 <li>disable fire-drag on some websites</li>
 </ul>
 
-PS: NO RESTART but need to refresh the web pages.
-
-![Kiku](screenshots/show.png)
-![Kiku](screenshots/preference.png)
-
+PS:  Need to reload webpages after the installation
 
 *source code*: <a href="https://github.com/erictsangx/fire-drag">https://github.com/erictsangx/fire-drag</a>
 
