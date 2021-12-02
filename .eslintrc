@@ -7,6 +7,17 @@
   },
   "extends": [
     "react-app",
-    "react-app/jest"
-  ]
+    "react-app/jest",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": false,
+        "trailingComma": "all"
+      }
+    ]
+  }
 }

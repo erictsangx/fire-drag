@@ -18,7 +18,6 @@ import {
 import { BACKGROUND, DEFAULT_OPTIONS, FOREGROUND } from './shared/constants'
 import { isEmpty, saveOptions } from './shared/utils'
 
-
 const Main = styled(Paper)`
   display: flex;
   height: 100%;
@@ -32,7 +31,8 @@ const Main = styled(Paper)`
     border: 1px solid white;
   }
 
-  .MuiTextField-root, fieldset {
+  .MuiTextField-root,
+  fieldset {
     margin: 8px 0;
     border-bottom: 1px solid white;
   }
@@ -40,9 +40,7 @@ const Main = styled(Paper)`
   .MuiTextField-root {
     padding-bottom: 8px;
   }
-
 `
-
 
 const Bottom = styled('div')`
   display: flex;
@@ -50,11 +48,11 @@ const Bottom = styled('div')`
   padding: 16px;
 `
 
-const SearchEngineExample = 'e.g. https://www.google.com/search?q=@@ -> https://www.google.com/search?q=SelectedText'
+const SearchEngineExample =
+  'e.g. https://www.google.com/search?q=@@ -> https://www.google.com/search?q=SelectedText'
 const SearchEngineError = `It should start with http(s):// and include '@@'`
 
 function App() {
-
   const [pref, setPref] = useState({ ...DEFAULT_OPTIONS })
   const [open, setOpen] = useState(false)
   const [inputError, setInputError] = useState(false)
@@ -76,9 +74,13 @@ function App() {
     })
   }
 
-
   useEffect(() => {
-    if (isEmpty(pref.searchEngine) || !pref.searchEngine.includes('@@') || (!pref.searchEngine.startsWith('https://') && !pref.searchEngine.startsWith('http://'))) {
+    if (
+      isEmpty(pref.searchEngine) ||
+      !pref.searchEngine.includes('@@') ||
+      (!pref.searchEngine.startsWith('https://') &&
+        !pref.searchEngine.startsWith('http://'))
+    ) {
       setInputError(true)
       setHelperText(SearchEngineError)
     } else {
@@ -87,19 +89,13 @@ function App() {
     }
   }, [pref.searchEngine])
 
-
   const handleClose = () => {
     setOpen(false)
   }
 
   return (
     <Main elevation={2}>
-      <Paper
-        component="form"
-        noValidate
-        autoComplete="off"
-        onSubmit={submit}
-      >
+      <Paper component="form" noValidate autoComplete="off" onSubmit={submit}>
         <TextField
           required
           error={inputError}
@@ -108,7 +104,7 @@ function App() {
           label="Search Engine URL"
           helperText={helperText}
           onChange={(event) => {
-            setPref(prevState => ({
+            setPref((prevState) => ({
               ...prevState,
               searchEngine: event.target.value,
             }))
@@ -117,53 +113,88 @@ function App() {
 
         <FormControl component="fieldset" fullWidth>
           <FormLabel component="legend">Search texts in</FormLabel>
-          <RadioGroup row value={pref.textActive}
-                      onChange={(event, value) => {
-                        setPref((prevState => ({
-                          ...prevState,
-                          textActive: value,
-                        })))
-                      }}>
-            <FormControlLabel value={FOREGROUND} control={<Radio />} label="Foreground" />
-            <FormControlLabel value={BACKGROUND} control={<Radio />} label="Background" />
+          <RadioGroup
+            row
+            value={pref.textActive}
+            onChange={(event, value) => {
+              setPref((prevState) => ({
+                ...prevState,
+                textActive: value,
+              }))
+            }}
+          >
+            <FormControlLabel
+              value={FOREGROUND}
+              control={<Radio />}
+              label="Foreground"
+            />
+            <FormControlLabel
+              value={BACKGROUND}
+              control={<Radio />}
+              label="Background"
+            />
           </RadioGroup>
         </FormControl>
 
         <FormControl component="fieldset" fullWidth>
           <FormLabel component="legend">Open links in</FormLabel>
-          <RadioGroup row value={pref.linkActive} onChange={(event, value) => {
-            setPref((prevState => ({
-              ...prevState,
-              linkActive: value,
-            })))
-          }}>
-            <FormControlLabel value={FOREGROUND} control={<Radio />} label="Foreground" />
-            <FormControlLabel value={BACKGROUND} control={<Radio />} label="Background" />
+          <RadioGroup
+            row
+            value={pref.linkActive}
+            onChange={(event, value) => {
+              setPref((prevState) => ({
+                ...prevState,
+                linkActive: value,
+              }))
+            }}
+          >
+            <FormControlLabel
+              value={FOREGROUND}
+              control={<Radio />}
+              label="Foreground"
+            />
+            <FormControlLabel
+              value={BACKGROUND}
+              control={<Radio />}
+              label="Background"
+            />
           </RadioGroup>
         </FormControl>
 
         <FormControl component="fieldset" fullWidth>
           <FormLabel component="legend">Open images in</FormLabel>
-          <RadioGroup row value={pref.imageActive} onChange={(event, value) => {
-            setPref((prevState => ({
-              ...prevState,
-              imageActive: value,
-            })))
-          }}>
-            <FormControlLabel value={FOREGROUND} control={<Radio />} label="Foreground" />
-            <FormControlLabel value={BACKGROUND} control={<Radio />} label="Background" />
+          <RadioGroup
+            row
+            value={pref.imageActive}
+            onChange={(event, value) => {
+              setPref((prevState) => ({
+                ...prevState,
+                imageActive: value,
+              }))
+            }}
+          >
+            <FormControlLabel
+              value={FOREGROUND}
+              control={<Radio />}
+              label="Foreground"
+            />
+            <FormControlLabel
+              value={BACKGROUND}
+              control={<Radio />}
+              label="Background"
+            />
           </RadioGroup>
         </FormControl>
 
-
         <Box mt={2}>
           <Typography variant="subtitle1" display={'block'} gutterBottom>
-            Disable fire-drag: (URL separated by new lines, support subdomain using *.)
+            Disable fire-drag: (URL separated by new lines, support subdomain
+            using *.)
           </Typography>
           <TextareaAutosize
             value={pref.whitelist}
             onChange={(event) => {
-              setPref(prevState => ({
+              setPref((prevState) => ({
                 ...prevState,
                 whitelist: event.target.value,
               }))
@@ -175,18 +206,27 @@ function App() {
         </Box>
 
         <Bottom>
-          <Button variant="contained" type="submit" color={'info'} disabled={inputError}>Save</Button>
+          <Button
+            variant="contained"
+            type="submit"
+            color={'info'}
+            disabled={inputError}
+          >
+            Save
+          </Button>
         </Bottom>
-
       </Paper>
 
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
           Saved!
         </Alert>
       </Snackbar>
-
     </Main>
   )
 }

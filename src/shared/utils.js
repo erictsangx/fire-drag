@@ -12,10 +12,8 @@ if (!window.browser) {
   window.browser = {
     storage: {
       local: {
-        set() {
-        },
-        get() {
-        },
+        set() {},
+        get() {},
       },
     },
   }

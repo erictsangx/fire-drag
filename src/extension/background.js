@@ -3,7 +3,15 @@
  */
 
 import { DEBUG, loadOptions } from '../shared/utils'
-import { FIRST, FOREGROUND, IMAGE_TYPE, LAST, LEFT, LINK_TYPE, TEXT_TYPE } from '../shared/constants'
+import {
+  FIRST,
+  FOREGROUND,
+  IMAGE_TYPE,
+  LAST,
+  LEFT,
+  LINK_TYPE,
+  TEXT_TYPE,
+} from '../shared/constants'
 
 DEBUG('background start')
 
@@ -71,7 +79,6 @@ async function init() {
     DEBUG('received object', message)
     search(message).then()
   })
-
 }
 
 init().then()

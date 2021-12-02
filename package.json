@@ -18,6 +18,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "rollup": "^2.60.2",
     "typescript": "^4.5.2",
     "web-vitals": "^1.1.2"
   },
@@ -27,7 +28,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "roll": "rollup --config --watch",
-    "roll:build": "rollup --config"
+    "roll:build": "rollup --config",
+    "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx,json}\""
   },
   "browserslist": {
     "production": [
@@ -42,6 +44,9 @@
     ]
   },
   "devDependencies": {
-    "rollup": "^2.60.2"
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "prettier": "2.5.0"
   }
 }
