@@ -2,8 +2,8 @@
  * Created by erictsangx on 19/12/2016.
  */
 
-import { DEBUG, loadOptions } from '../core/extension'
-import { TEXT_TYPE, LINK_TYPE, IMAGE_TYPE, LAST, FIRST, LEFT } from '../core/constants'
+import { DEBUG, loadOptions } from '../shared/utils'
+import { FIRST, FOREGROUND, IMAGE_TYPE, LAST, LEFT, LINK_TYPE, TEXT_TYPE } from '../shared/constants'
 
 DEBUG('background start')
 
@@ -35,7 +35,10 @@ function submitSearch(url, query) {
   return encodeURI(url.replace('@@', query))
 }
 
-// @params emitObj
+function foregroundBool(target) {
+  return target === FOREGROUND
+}
+
 async function search({ type, content }) {
   const options = await loadOptions()
 
@@ -43,38 +46,25 @@ async function search({ type, content }) {
     case IMAGE_TYPE:
       await createTab({
         url: content,
-        active: options.imageActive,
+        active: foregroundBool(options.imageActive),
       })
       break
     case LINK_TYPE:
       await createTab({
         url: content,
-        active: options.linkActive,
+        active: foregroundBool(options.linkActive),
       })
       break
     case TEXT_TYPE:
       await createTab({
         url: submitSearch(options.searchEngine, content),
-        active: options.textActive,
+        active: foregroundBool(options.textActive),
       })
       break
     default:
       console.error('should not happen')
   }
 }
-
-// function sendMessageToTabs(tabs) {
-//   for (let tab of tabs) {
-//     console.log('tab', tab)
-//     browser.tabs.sendMessage(
-//       tab.id,
-//       { greeting: 'Hi from background script' },
-//     ).then(response => {
-//       console.log('Message from the content script:')
-//       console.log(response.response)
-//     }).catch((error) => console.error(`Error: ${error}`))
-//   }
-// }
 
 async function init() {
   browser.runtime.onMessage.addListener((message) => {

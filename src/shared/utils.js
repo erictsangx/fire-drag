@@ -6,6 +6,21 @@ import { DEFAULT_OPTIONS } from './constants'
 
 const DEBUG_ENV = true
 
+//create mock extension api
+if (!window.browser) {
+  // noinspection JSConstantReassignment
+  window.browser = {
+    storage: {
+      local: {
+        set() {
+        },
+        get() {
+        },
+      },
+    },
+  }
+}
+
 export function DEBUG(...args) {
   if (DEBUG_ENV) {
     console.info(...args)

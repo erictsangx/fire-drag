@@ -12,6 +12,9 @@ export const LEFT = 'LEFT'
 export const FIRST = 'FIRST'
 export const LAST = 'LAST'
 
+export const FOREGROUND = 'FOREGROUND'
+export const BACKGROUND = 'BACKGROUND'
+
 export const TAB_POSITIONS = [
   { label: 'Right of the current tab', value: RIGHT },
   { label: 'Left of the current tab', value: LEFT },
@@ -20,11 +23,11 @@ export const TAB_POSITIONS = [
 ]
 
 export const DEFAULT_OPTIONS = {
-  textActive: true,
-  linkActive: false,
-  imageActive: false,
+  textActive: FOREGROUND,
+  linkActive: BACKGROUND,
+  imageActive: BACKGROUND,
   searchEngine: 'https://www.google.com/search?q=@@',
   position: TAB_POSITIONS[0].value,
   // whitelist: '*.mozilla.org' + '\n' + 'example.com',
-  whitelist: ''
+  whitelist: '',
 }

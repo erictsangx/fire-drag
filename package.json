@@ -5,6 +5,9 @@
   "author": "erictsangx@gmail.com",
   "license": "GNU GPL v3.0",
   "dependencies": {
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.2.2",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -20,7 +23,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rollup --config && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "roll": "rollup --config --watch",

@@ -2,8 +2,8 @@
  * Created by erictsangx on 5/10/2015.
  */
 
-import { DEBUG, isEmpty, loadOptions } from '../core/extension'
-import { IGNORED_TAG, IMAGE_TYPE, LINK_TYPE, TEXT_TYPE } from '../core/constants'
+import { DEBUG, isEmpty, loadOptions } from '../shared/utils'
+import { IGNORED_TAG, IMAGE_TYPE, LINK_TYPE, TEXT_TYPE } from '../shared/constants'
 
 DEBUG('content start')
 

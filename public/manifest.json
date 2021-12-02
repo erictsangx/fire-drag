@@ -1,7 +1,7 @@
 {
   "description": "Provide drag-and-drop utilities for texts and links",
   "manifest_version": 2,
-  "name": "Fire Drag",
+  "name": "fire-drag",
   "version": "2.0.0",
   "homepage_url": "https://github.com/erictsangx/fire-drag",
   "author": "erictsangx@gmail.com",
@@ -30,6 +30,10 @@
       "run_at": "document_end"
     }
   ],
+  "options_ui": {
+    "page": "index.html",
+    "open_in_tab": true
+  },
   "permissions": [
     "tabs",
     "storage"

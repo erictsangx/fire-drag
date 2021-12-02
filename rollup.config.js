@@ -1,13 +1,13 @@
 export default [
   {
-    input: 'public/content_scripts/injected.js',
+    input: 'src/extension/content.js',
     output: {
       file: 'public/rollup/content_scripts.js',
       format: 'es',
     },
   },
   {
-    input: 'public/background_scripts/background.js',
+    input: 'src/extension/background.js',
     output: {
       file: 'public/rollup/background_scripts.js',
       format: 'es',
