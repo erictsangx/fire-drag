@@ -29,7 +29,9 @@
     "eject": "react-scripts eject",
     "roll": "rollup --config --watch",
     "roll:build": "rollup --config",
-    "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx,json}\""
+    "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx,json}\"",
+    "build:ext": "rollup --config && react-scripts build && web-ext build --source-dir build --overwrite-dest",
+    "zip": "tar  --exclude='./idea' --exclude='./git' --exclude='./node_modules' --exclude='./screenshots' --exclude='./web-ext-artifacts' -czvf web-ext-artifacts/source.tar.gz ."
   },
   "browserslist": {
     "production": [

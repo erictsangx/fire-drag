@@ -2,7 +2,7 @@
   "description": "Provide drag-and-drop utilities for texts and links",
   "manifest_version": 2,
   "name": "fire-drag",
-  "version": "2.0.1",
+  "version": "2.0.4",
   "homepage_url": "https://github.com/erictsangx/fire-drag",
   "author": "erictsangx@gmail.com",
   "applications": {

@@ -4,9 +4,9 @@
 
 import { DEFAULT_OPTIONS } from './constants'
 
-const DEBUG_ENV = true
+const DEBUG_ENV = false
 
-//create mock extension api
+//mock extension api for local development
 if (!window.browser) {
   // noinspection JSConstantReassignment
   window.browser = {

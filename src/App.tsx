@@ -16,7 +16,7 @@ import {
   Typography,
 } from '@mui/material'
 import { BACKGROUND, DEFAULT_OPTIONS, FOREGROUND } from './shared/constants'
-import { isEmpty, saveOptions } from './shared/utils'
+import { isEmpty, loadOptions, saveOptions } from './shared/utils'
 
 const Main = styled(Paper)`
   display: flex;
@@ -57,6 +57,12 @@ function App() {
   const [open, setOpen] = useState(false)
   const [inputError, setInputError] = useState(false)
   const [helperText, setHelperText] = useState(SearchEngineExample)
+
+  useEffect(() => {
+    loadOptions().then((options) => {
+      setPref(options)
+    })
+  }, [])
 
   const submit = (event: FormEvent) => {
     event.preventDefault()
