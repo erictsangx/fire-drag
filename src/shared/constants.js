@@ -28,6 +28,5 @@ export const DEFAULT_OPTIONS = {
   imageActive: BACKGROUND,
   searchEngine: 'https://www.google.com/search?q=@@',
   position: TAB_POSITIONS[0].value,
-  // whitelist: '*.mozilla.org' + '\n' + 'example.com',
-  whitelist: '',
+  whitelist: '*.mozilla.org',
 }
