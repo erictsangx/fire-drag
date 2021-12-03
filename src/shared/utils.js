@@ -40,6 +40,6 @@ export async function loadOptions() {
   if (isEmpty(storage) || Object.keys(storage).length === 0) {
     return DEFAULT_OPTIONS
   } else {
-    return storage.options
+    return { ...DEFAULT_OPTIONS, ...storage.options }
   }
 }
