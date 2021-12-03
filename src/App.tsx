@@ -1,3 +1,5 @@
+// noinspection HttpUrlsUsage
+
 import React, { FormEvent, useEffect, useState } from 'react'
 import {
   Alert,
@@ -15,7 +17,12 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import { BACKGROUND, DEFAULT_OPTIONS, FOREGROUND } from './shared/constants'
+import {
+  BACKGROUND,
+  DEFAULT_OPTIONS,
+  FOREGROUND,
+  TAB_POSITIONS,
+} from './shared/constants'
 import { isEmpty, loadOptions, saveOptions } from './shared/utils'
 
 const Main = styled(Paper)`
@@ -192,10 +199,33 @@ function App() {
           </RadioGroup>
         </FormControl>
 
+        <FormControl component="fieldset" fullWidth>
+          <FormLabel component="legend">New tab position</FormLabel>
+          <RadioGroup
+            row
+            value={pref.position}
+            onChange={(event, value) => {
+              setPref((prevState) => ({
+                ...prevState,
+                position: value,
+              }))
+            }}
+          >
+            {TAB_POSITIONS.map((it, index) => (
+              <FormControlLabel
+                key={`position-${it.value}-${index}`}
+                value={it.value}
+                control={<Radio />}
+                label={it.label}
+              />
+            ))}
+          </RadioGroup>
+        </FormControl>
+
         <Box mt={2}>
           <Typography variant="subtitle1" display={'block'} gutterBottom>
-            Disable fire-drag: (URL separated by new lines, support subdomain
-            using *.)
+            Disable fire-drag (URL separated by new lines, support subdomain
+            using *.):
           </Typography>
           <TextareaAutosize
             value={pref.whitelist}
