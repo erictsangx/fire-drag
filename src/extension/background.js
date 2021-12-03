@@ -40,10 +40,10 @@ async function createTab(props) {
 }
 
 function submitSearch(url, query) {
-  return encodeURI(url.replace('@@', query))
+  return url.replace('@@', encodeURIComponent(query))
 }
 
-function foregroundBool(target) {
+function isForeground(target) {
   return target === FOREGROUND
 }
 
@@ -54,19 +54,19 @@ async function search({ type, content }) {
     case IMAGE_TYPE:
       await createTab({
         url: content,
-        active: foregroundBool(options.imageActive),
+        active: isForeground(options.imageActive),
       })
       break
     case LINK_TYPE:
       await createTab({
         url: content,
-        active: foregroundBool(options.linkActive),
+        active: isForeground(options.linkActive),
       })
       break
     case TEXT_TYPE:
       await createTab({
         url: submitSearch(options.searchEngine, content),
-        active: foregroundBool(options.textActive),
+        active: isForeground(options.textActive),
       })
       break
     default:

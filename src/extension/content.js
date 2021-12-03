@@ -1,3 +1,5 @@
+// noinspection HttpUrlsUsage
+
 /**
  * Created by erictsangx on 5/10/2015.
  */
