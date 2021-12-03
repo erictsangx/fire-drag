@@ -29,17 +29,23 @@ export function isEmpty(obj) {
   return obj === null || obj === undefined
 }
 
+const optionKey = 'options206'
+
 export async function saveOptions(options) {
   DEBUG('saveOptions', options)
-  await browser.storage.local.set({ options })
+  await browser.storage.local.set({ [optionKey]: options })
 }
 
 export async function loadOptions() {
-  const storage = await browser.storage.local.get('options')
+  const storage = await browser.storage.local.get(optionKey)
   DEBUG('load storage', storage)
-  if (isEmpty(storage) || Object.keys(storage).length === 0) {
+  if (
+    isEmpty(storage) ||
+    Object.keys(storage).length === 0 ||
+    !storage[optionKey]
+  ) {
     return DEFAULT_OPTIONS
   } else {
-    return { ...DEFAULT_OPTIONS, ...storage.options }
+    return { ...DEFAULT_OPTIONS, ...storage[optionKey] }
   }
 }
