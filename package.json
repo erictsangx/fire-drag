@@ -32,7 +32,7 @@
     "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx,json}\"",
     "ext": "web-ext run --source-dir=build",
     "build:ext": "rollup --config && react-scripts build && web-ext build --source-dir build --overwrite-dest",
-    "zip": "tar  --exclude='./idea' --exclude='./git' --exclude='./node_modules' --exclude='./screenshots' --exclude='./web-ext-artifacts' -czvf web-ext-artifacts/source.tar.gz ."
+    "zip": "tar --exclude='.DS_Store' --exclude='./.idea' --exclude='./.git' --exclude='./node_modules' --exclude='./screenshots' --exclude='./web-ext-artifacts' -czvf web-ext-artifacts/source.tar.gz ."
   },
   "browserslist": {
     "production": [
