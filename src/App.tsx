@@ -5,8 +5,10 @@ import {
   Alert,
   Box,
   Button,
+  Checkbox,
   FormControl,
   FormControlLabel,
+  FormGroup,
   FormLabel,
   Paper,
   Radio,
@@ -27,9 +29,11 @@ import { isEmpty, loadOptions, saveOptions } from './shared/utils'
 
 const Main = styled(Paper)`
   display: flex;
-  height: 100%;
+  //height: 100%;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  border-radius: 0;
 
   form {
     width: 80%;
@@ -46,6 +50,12 @@ const Main = styled(Paper)`
 
   .MuiTextField-root {
     padding-bottom: 8px;
+  }
+
+  .no-touch {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
   }
 `
 
@@ -220,6 +230,30 @@ function App() {
               />
             ))}
           </RadioGroup>
+        </FormControl>
+
+        <FormControl component="fieldset" fullWidth>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={pref.cancelable}
+                  onChange={(event) => {
+                    setPref((prevState) => ({
+                      ...prevState,
+                      cancelable: event.target.checked,
+                    }))
+                  }}
+                />
+              }
+              label="Enable cancelable region (drop on the region will not trigger fire-drag)"
+            />
+            <img
+              className="no-touch"
+              src="/icons/no-touch.png"
+              alt="no touch"
+            />
+          </FormGroup>
         </FormControl>
 
         <Box mt={2}>

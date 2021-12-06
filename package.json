@@ -24,14 +24,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rollup --config && react-scripts build",
+    "build": "rollup --config && react-scripts build && web-ext build --source-dir build --overwrite-dest",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "roll": "rollup --config --watch",
     "roll:build": "rollup --config",
     "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx,json}\"",
-    "ext": "web-ext run --source-dir=build",
-    "build:ext": "rollup --config && react-scripts build && web-ext build --source-dir build --overwrite-dest",
+    "ext": "web-ext run --source-dir=public",
+    "ext:prod": "web-ext run --source-dir=build",
     "zip": "tar --exclude='.DS_Store' --exclude='./.idea' --exclude='./.git' --exclude='./node_modules' --exclude='./screenshots' --exclude='./web-ext-artifacts' -czvf web-ext-artifacts/source.tar.gz ."
   },
   "browserslist": {

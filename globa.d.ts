@@ -3,13 +3,16 @@ interface Browser {
     local: {
       set: (payload: Record<string, any>) => Promise<void>
       get: (key: string) => Promise<Record<string, any>>
-    },
-  },
+    }
+  }
   runtime: {
     sendMessage: (payload: Record<string, any>) => Promise<void>
     onMessage: {
-      addListener: (callback: (message: { type: string, content: string }) => void) => void
+      addListener: (
+        callback: (message: { type: string; content: string }) => void,
+      ) => void
     }
+    getURL(asset: string): string
   }
   tabs: {
     query: (payload: Record<string, any>) => Promise<any[]>

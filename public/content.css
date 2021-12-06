@@ -1,0 +1,16 @@
+#fire-drag-overlay {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999999999999;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: none;
+
+    background: #FFF no-repeat center center;
+    background-size: 100% 100%;
+}

@@ -29,4 +29,5 @@ export const DEFAULT_OPTIONS = {
   searchEngine: 'https://www.google.com/search?q=@@',
   position: TAB_POSITIONS[0].value,
   whitelist: '*.mozilla.org',
+  cancelable: true,
 }

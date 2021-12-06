@@ -86,24 +86,54 @@ async function checkWhitelist() {
   })
 
   if (isEmpty(result)) {
-    init()
+    init(options.cancelable)
   }
 }
 
-function init() {
-  const start = {}
+function createOverlay() {
+  const overlay = document.createElement('div')
+  overlay.id = 'fire-drag-overlay'
+
+  overlay.style.backgroundImage = `url("${browser.runtime.getURL(
+    'icons/no-touch.png',
+  )}")`
+
+  overlay.addEventListener('dragover', () => {
+    overlay.style.opacity = '1'
+  })
+
+  overlay.addEventListener('dragleave', () => {
+    overlay.style.opacity = '0.4'
+  })
+
+  overlay.ondrop = (event) => {
+    event.preventDefault()
+  }
+  document.body.append(overlay)
+  return overlay
+}
+
+function init(cancelable) {
   let preventDrop = false
+  const overlay = cancelable ? createOverlay() : null
 
   document.addEventListener(
     'dragstart',
     (event) => {
-      start.x = event.clientX
-      start.y = event.clientY
+      if (overlay) {
+        overlay.style.left = event.clientX - 50 + 'px'
+        overlay.style.top = event.clientY - 50 + 'px'
+        overlay.style.display = 'block'
+      }
     },
     false,
   )
 
   document.addEventListener('dragend', (event) => {
+    if (overlay) {
+      overlay.style.display = 'none'
+    }
+
     if (!preventDrop) {
       event.preventDefault()
 
@@ -120,12 +150,15 @@ function init() {
       }
 
       DEBUG('emitObj', emitObj)
-
+      preventDrop = false
       browser.runtime.sendMessage(emitObj).then()
     }
   })
 
   document.ondrop = (event) => {
+    if (event.target === overlay) {
+      preventDrop = true
+    }
     if (!preventDrop) {
       event.preventDefault()
     }
