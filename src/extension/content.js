@@ -121,8 +121,8 @@ function init(cancelable) {
     'dragstart',
     (event) => {
       if (overlay) {
-        overlay.style.left = event.clientX - 50 + 'px'
-        overlay.style.top = event.clientY - 50 + 'px'
+        overlay.style.left = event.pageX - 50 + 'px'
+        overlay.style.top = event.pageY - 50 + 'px'
         overlay.style.display = 'block'
       }
     },
